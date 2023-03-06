@@ -6,17 +6,20 @@ using UnityEngine.AI;
 public enum EnemyType {Melee , Range}
 public class EnemyVisibility : MonoBehaviour {
     [SerializeField] EnemyType enemyType;
-
+    public GameObject projectile;
+    public GameObject firestart;
     public LayerMask visibilityBlockers;
     Transform player;
     public float maxSightRange = 15f;
     public float maxSightAngle = 45f;
     NavMeshAgent enemy;
+    float timeToFire = 4f;
+    float cd;
     void Start() {
         enemy = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-    }
 
+    }
    
     void Update() {
 
@@ -36,14 +39,16 @@ public class EnemyVisibility : MonoBehaviour {
             enemy.SetDestination(player.position);
             if (enemyType == EnemyType.Melee) {
                 if (dir.magnitude <= enemy.stoppingDistance) {
-                 //attack
-                    FaceTarget();
+                    
+                        FaceTarget();
+                    MeleeAttack();
                 }
             }
             if (enemyType == EnemyType.Range) {
-                if (dir.magnitude <= enemy.stoppingDistance+20f) {
-                   //attack
+                if (dir.magnitude <= enemy.stoppingDistance) {
                     FaceTarget();
+                    Shoot();
+                   
                 }
             }
 
@@ -60,4 +65,25 @@ public class EnemyVisibility : MonoBehaviour {
         Gizmos.DrawWireSphere(transform.position, maxSightRange);
 
     }
-}
+    void Shoot() {
+        cd += Time.deltaTime;
+       if( cd >= timeToFire) {
+
+            
+            Instantiate(projectile, firestart.transform.position, firestart.transform.rotation);
+
+            cd = 0;
+
+        }
+    }
+    void MeleeAttack() {
+
+
+        cd += Time.deltaTime;
+        if (cd >= timeToFire) {
+
+           //PLAY ANIMATION
+        }
+    }
+   
+    }
