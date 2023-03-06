@@ -3,27 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum EnemyType {Melee , Range}
+public enum EnemyType { Melee, Range }
 public class EnemyVisibility : MonoBehaviour {
     [SerializeField] EnemyType enemyType;
+    public LayerMask visibilityBlockers;
     public GameObject projectile;
     public GameObject firestart;
-    public LayerMask visibilityBlockers;
+    NavMeshAgent enemy;
     Transform player;
     public float maxSightRange = 15f;
     public float maxSightAngle = 45f;
-    NavMeshAgent enemy;
     float timeToFire = 4f;
+    float timeToSword = 2f;
     float cd;
+    int healt;
+
     void Start() {
         enemy = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
     }
-   
+
     void Update() {
 
-        
+
 
         var origin = transform.position + 0.5f * Vector3.up;
         var targetPos = player.position + 0.5f * Vector3.up;
@@ -32,24 +35,29 @@ public class EnemyVisibility : MonoBehaviour {
         if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle) {
 
 
-          
+
 
 
 
             enemy.SetDestination(player.position);
             if (enemyType == EnemyType.Melee) {
+                healt = 5;
                 if (dir.magnitude <= enemy.stoppingDistance) {
-                    
-                        FaceTarget();
+
+                    FaceTarget();
                     MeleeAttack();
                 }
             }
             if (enemyType == EnemyType.Range) {
-                if (dir.magnitude <= enemy.stoppingDistance) {
+                healt = 2;
+                if (dir.magnitude <= enemy.stoppingDistance && dir.magnitude > 2) {
                     FaceTarget();
                     Shoot();
-                   
+                } else if (dir.magnitude <= 2) {
+                    MeleeAttack();
                 }
+
+                
             }
 
 
@@ -67,9 +75,9 @@ public class EnemyVisibility : MonoBehaviour {
     }
     void Shoot() {
         cd += Time.deltaTime;
-       if( cd >= timeToFire) {
+        if (cd >= timeToFire) {
 
-            
+
             Instantiate(projectile, firestart.transform.position, firestart.transform.rotation);
 
             cd = 0;
@@ -80,10 +88,11 @@ public class EnemyVisibility : MonoBehaviour {
 
 
         cd += Time.deltaTime;
-        if (cd >= timeToFire) {
+        if (cd >= timeToSword) {
 
-           //PLAY ANIMATION
+            //PLAY ANIMATION
         }
+        cd = 0;
     }
-   
-    }
+
+}
