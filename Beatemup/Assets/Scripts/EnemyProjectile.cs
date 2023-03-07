@@ -25,6 +25,7 @@ public class EnemyProjectile : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
+        speed = 0;
         if (collision.gameObject.CompareTag("Player")) {
 
             Vector3 dir = (rb.transform.position - collision.transform.position).normalized;
@@ -38,6 +39,7 @@ public class EnemyProjectile : MonoBehaviour {
         var hitvfx = Instantiate(hit, pos, rot);
         var particlehit = hitvfx.transform.GetChild(0).GetComponent<ParticleSystem>();
         Destroy(hitvfx, particlehit.main.duration);
+        Destroy(gameObject);
 
 
     }
