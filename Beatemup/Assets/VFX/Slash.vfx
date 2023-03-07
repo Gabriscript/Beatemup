@@ -24,34 +24,13 @@ MonoBehaviour:
     - model: {fileID: 8926484042661614812}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 0}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614867}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661614827}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614832}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661614854}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661614839}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614842}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614845}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614848}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614860}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661615062}
@@ -107,7 +86,7 @@ MonoBehaviour:
     x: 241
     y: -190
     width: 7107
-    height: 2617
+    height: 2619
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2025,7 +2004,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: False
+      m_SerializableObject: True
     m_Space: 2147483647
   m_Property:
     name: _vfx_enabled
@@ -3924,7 +3903,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: False
+      m_SerializableObject: True
     m_Space: 2147483647
   m_Property:
     name: _vfx_enabled
@@ -5338,7 +5317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
@@ -5402,7 +5381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1

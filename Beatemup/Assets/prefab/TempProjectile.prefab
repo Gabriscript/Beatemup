@@ -120,6 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  muzzle: {fileID: 2320209936538824267, guid: 3f463e0f754b7a0498efc5232ca5b528, type: 3}
+  hit: {fileID: 4372063640115353282, guid: 4466147615b50d34da8082a83712d5bb, type: 3}
 --- !u!54 &190031355524743428
 Rigidbody:
   m_ObjectHideFlags: 0

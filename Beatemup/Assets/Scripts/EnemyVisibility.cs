@@ -25,7 +25,10 @@ public class EnemyVisibility : MonoBehaviour {
     }
 
     void Update() {
+        if(healt == 0) {
 
+            //Die();
+        }
 
 
         var origin = transform.position + 0.5f * Vector3.up;
@@ -93,6 +96,12 @@ public class EnemyVisibility : MonoBehaviour {
             //PLAY ANIMATION
         }
         cd = 0;
+    }
+
+    void Die() {
+
+        Destroy(gameObject, 3);
+
     }
 
 }
