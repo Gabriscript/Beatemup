@@ -27,7 +27,7 @@ public class AttacksetScript : MonoBehaviour
     {
         if (Input.GetKey(attackButton1))
         {
-            swordbox1.enabled = true;
+            //swordbox1.enabled = true;
             playerStateController.battleState = PlayStateController.BattleState.attacking;
             playerStateController.hittablestate = PlayStateController.Hittablestate.attacking;
             animator.SetBool("attack1", true);
@@ -40,7 +40,7 @@ public class AttacksetScript : MonoBehaviour
 
         yield return new WaitForSeconds(duration);
         animator.SetBool(attackname, false);
-        swordbox1.enabled = false;
+        //swordbox1.enabled = false;
 
     }
 
