@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class comboManger : MonoBehaviour
 {
-    public float Combo;
+    public float Combo=0;
     public float MaxCombo;
     public float MinCombo;
     public float ComboCoolOff;
     
+    
     public Image bar;
-    float timepassed = 0;
+    public Text combo;
+    public float timepassed = 0;
 
     public void Start()
     {
@@ -22,18 +24,28 @@ public class comboManger : MonoBehaviour
     }
     public void Update()
     {
-        
-        timepassed +=Time.deltaTime;
-        bar.fillAmount = (ComboCoolOff - timepassed) / ComboCoolOff;
 
-        if(Input.GetKeyUp(KeyCode.Space)) 
-        {
-
-            timepassed=0;
-
-        }
+        ComboSystem();
 
     }
 
+    public void ComboSystem()
+    {
+        timepassed += Time.deltaTime;
+        bar.fillAmount = (ComboCoolOff - timepassed) / ComboCoolOff;
+        combo.text = ("Combo" + Combo);
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+
+            timepassed = 0;
+            Combo += 1;
+        }
+
+        if (timepassed >= ComboCoolOff)
+        {
+            Combo -= 1;
+            timepassed = 0;
+        }
+    }
     
 }
