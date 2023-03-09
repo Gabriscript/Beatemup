@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class enemieDestroy : MonoBehaviour
 {
-    public void OnCollisionEnter(Collision col)
+    public GameObject myself;
+
+
+    public void OnTriggerEnter(Collider other)
     {
-        if (col.gameObject.tag == "weapon")
-        {       
-            Destroy(this);
+        if (other.gameObject.tag == "weapon")
+        {
+            Destroy(myself);
         }
     }
+    
 }
