@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour {
@@ -25,13 +26,26 @@ public class EnemyProjectile : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        speed = 0;
-        if (collision.gameObject.CompareTag("Player")) {
+        var c = collision.collider.GetComponent<IDamageable>();
+        if(c != null) {
+            //var hitdata = new HitData();
+            //hitdata.damage = 1;
+            //hitdata.push = Vector3.zero;
+            //c.TakeDamage(hitdata);
+            c.TakeDamage(new HitData(1));
 
-            Vector3 dir = (rb.transform.position - collision.transform.position).normalized;
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(-dir, ForceMode.Impulse);
 
         }
+
+
+
+        speed = 0;
+       // if (collision.gameObject.CompareTag("Player")) {
+
+           // Vector3 dir = (rb.transform.position - collision.transform.position).normalized;
+           // collision.gameObject.GetComponent<Rigidbody>().AddForce(-dir, ForceMode.Impulse);
+
+      //  }
 
         ContactPoint contact = collision.contacts[0];
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);

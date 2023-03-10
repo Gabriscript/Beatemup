@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 190031355524743416}
   - component: {fileID: 190031355524743431}
   - component: {fileID: 190031355524743430}
-  - component: {fileID: 190031355524743429}
   - component: {fileID: 190031355524743428}
+  - component: {fileID: 2511288199507332666}
   m_Layer: 0
   m_Name: TempProjectile
   m_TagString: Untagged
@@ -107,21 +107,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &190031355524743429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190031355524743427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e607687b9fa8c3b43b414048639590d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 6
-  muzzle: {fileID: 2320209936538824267, guid: 3f463e0f754b7a0498efc5232ca5b528, type: 3}
-  hit: {fileID: 4372063640115353282, guid: 4466147615b50d34da8082a83712d5bb, type: 3}
 --- !u!54 &190031355524743428
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,3 +134,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &2511288199507332666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190031355524743427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e712db926665474ba22dbbf5dd336a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 6
+  muzzle: {fileID: 1776476180279631211, guid: 8754d6a84b2a23e43a3543dcddfaebc0, type: 3}
+  hit: {fileID: 4372063640115353282, guid: 3ee4515510bd5b44d91e74955b86f38f, type: 3}
