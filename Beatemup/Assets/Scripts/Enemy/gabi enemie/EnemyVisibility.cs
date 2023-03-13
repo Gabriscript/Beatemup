@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
 public enum EnemyType { Melee, Range }
-public class EnemyVisibility : MonoBehaviour {
+public class EnemyVisibility : MonoBehaviour,IDamageable
+    {
     [SerializeField] EnemyType enemyType;
     public LayerMask visibilityBlockers;
     public GameObject projectile;
@@ -16,7 +19,7 @@ public class EnemyVisibility : MonoBehaviour {
     float timeToFire = 4f;
     float timeToSword = 2f;
     float cd;
-    int healt;
+    int healt =3 ;
 
     void Start() {
         enemy = GetComponent<NavMeshAgent>();
@@ -25,9 +28,12 @@ public class EnemyVisibility : MonoBehaviour {
     }
 
     void Update() {
-        if(healt == 0) {
 
-            //Die();
+        TakeDamage(new HitData(1));
+
+        if (healt == 0) {
+
+           Die();
         }
 
 
@@ -44,7 +50,7 @@ public class EnemyVisibility : MonoBehaviour {
 
             enemy.SetDestination(player.position);
             if (enemyType == EnemyType.Melee) {
-                healt = 5;
+             
                 if (dir.magnitude <= enemy.stoppingDistance) {
 
                     FaceTarget();
@@ -52,7 +58,7 @@ public class EnemyVisibility : MonoBehaviour {
                 }
             }
             if (enemyType == EnemyType.Range) {
-                healt = 2;
+               
                 if (dir.magnitude <= enemy.stoppingDistance && dir.magnitude > 2) {
                     FaceTarget();
                     Shoot();
@@ -66,6 +72,7 @@ public class EnemyVisibility : MonoBehaviour {
 
         }
     }
+    
     void FaceTarget() {
         Vector3 direction = (player.position - transform.position).normalized;
         Quaternion lookRootation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
@@ -97,6 +104,25 @@ public class EnemyVisibility : MonoBehaviour {
         }
         cd = 0;
     }
+  public void TakeDamage(HitData hit) {
+
+
+        Hit(hit.damage);
+      
+
+    }
+
+    public void Hit(int damageTaken) {
+
+        healt -= damageTaken;
+        if (healt <= 0) {
+
+            Die();
+        }
+    }
+
+
+
 
     void Die() {
 

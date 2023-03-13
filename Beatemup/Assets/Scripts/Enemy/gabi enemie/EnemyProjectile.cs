@@ -32,9 +32,10 @@ public class EnemyProjectile : MonoBehaviour {
             //hitdata.damage = 1;
             //hitdata.push = Vector3.zero;
             //c.TakeDamage(hitdata);
-            c.TakeDamage(new HitData(1));
+           
+            c.TakeDamage(new HitData(1,Vector3.back)) ;
 
-
+         // collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.back, ForceMode.VelocityChange);
         }
 
 

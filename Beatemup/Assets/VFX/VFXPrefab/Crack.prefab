@@ -14692,7 +14692,7 @@ Transform:
   - {fileID: 4034857675635535483}
   - {fileID: 716937607977638720}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4832524454172920542
 GameObject:
@@ -19529,7 +19529,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0a2da3215a7ae264484033387209536c, type: 2}
+  - {fileID: 2100000, guid: 3e91c57bdc626034e88d22018d136b65, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

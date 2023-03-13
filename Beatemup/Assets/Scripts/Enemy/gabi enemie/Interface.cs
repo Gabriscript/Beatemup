@@ -10,6 +10,11 @@ public struct HitData {
         this.damage = damage;
         push = Vector3.zero;
     }
+    public HitData(int damage,Vector3 push) {
+        this.damage = damage;
+        this.push = push;
+    }
+
 }
 
 public interface IDamageable {

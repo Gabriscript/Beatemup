@@ -17,6 +17,8 @@ public class EnemySword : MonoBehaviour {
         var c = collision.collider.GetComponent<IDamageable>();
         if (c != null) {
             c.TakeDamage(new HitData(1));
+        // collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.back, ForceMode.VelocityChange);
+
         }
 
       //  if (collision.gameObject.CompareTag("Player")) {
