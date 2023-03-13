@@ -44,7 +44,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatisGround);
         MyInput();
-        speedcontrol();
+        
 
         if (grounded)
         {
@@ -60,6 +60,7 @@ public class PlayerMovementScript : MonoBehaviour
     void FixedUpdate()
     {
         moverPlayer();
+        speedcontrol();
     }
     public void MyInput()
     {
