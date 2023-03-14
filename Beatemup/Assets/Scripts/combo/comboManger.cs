@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class comboManger : MonoBehaviour
 {
+    [Header("comboSettings")]
     public float Combo=0;
-    public float MaxCombo;
-    public float MinCombo;
     public float ComboCoolOff;
+    
+
     
     
     public Image bar;
@@ -47,5 +48,16 @@ public class comboManger : MonoBehaviour
             timepassed = 0;
         }
     }
+
+    public void ComboRank()
+    {
+
+
+
+    }
+
+
+
+
     
 }

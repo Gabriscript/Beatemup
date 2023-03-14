@@ -42,7 +42,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     void Update() {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatisGround);
         MyInput();
-        speedcontrol();
+        
 
         if (grounded) {
             rb.drag = groundDrag;
@@ -54,6 +54,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
 
     void FixedUpdate() {
         moverPlayer();
+        speedcontrol();
     }
     public void MyInput() {
         horizontalInput = Input.GetAxisRaw("Horizontal");
