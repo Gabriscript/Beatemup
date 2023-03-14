@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Unity.Burst.CompilerServices;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,7 +20,7 @@ public class EnemyVisibility : MonoBehaviour,IDamageable
     float timeToFire = 4f;
     float timeToSword = 2f;
     float cd;
-    int healt =3 ;
+    int health =1;
 
     void Start() {
         enemy = GetComponent<NavMeshAgent>();
@@ -29,13 +30,9 @@ public class EnemyVisibility : MonoBehaviour,IDamageable
 
     void Update() {
 
-        TakeDamage(new HitData(1));
 
-        if (healt == 0) {
-
-           Die();
-        }
-
+        
+      
 
         var origin = transform.position + 0.5f * Vector3.up;
         var targetPos = player.position + 0.5f * Vector3.up;
@@ -106,20 +103,33 @@ public class EnemyVisibility : MonoBehaviour,IDamageable
     }
   public void TakeDamage(HitData hit) {
 
-
-        Hit(hit.damage);
-      
-
-    }
-
-    public void Hit(int damageTaken) {
-
-        healt -= damageTaken;
-        if (healt <= 0) {
+        health -= hit.damage;
+        Debug.Log("enemy attackked");
+        
+       
+        if (health <= 0) {
 
             Die();
         }
+
     }
+
+  
+    void OnTriggerEnter(Collider collision) {
+
+        PlayerMovementScript target = collision.GetComponent<PlayerMovementScript>();
+        if (target != null) {
+            target.TakeDamage(new HitData(1,Vector3.back));
+        }
+    }
+    public void Hit(int damageTaken) {
+
+         health -= damageTaken;
+         if (health <= 0) {
+
+             Die();
+         }
+     }
 
 
 

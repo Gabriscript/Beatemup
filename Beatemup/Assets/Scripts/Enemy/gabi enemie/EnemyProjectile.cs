@@ -26,13 +26,15 @@ public class EnemyProjectile : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        var c = collision.collider.GetComponent<IDamageable>();
-        if(c != null) {
+        print("moi");
+        
+        var c = collision.collider.GetComponentInParent<IDamageable>();
+        if (c != null) {
             //var hitdata = new HitData();
             //hitdata.damage = 1;
             //hitdata.push = Vector3.zero;
             //c.TakeDamage(hitdata);
-           
+            print("ciao");
             c.TakeDamage(new HitData(1,Vector3.back)) ;
 
          // collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.back, ForceMode.VelocityChange);
