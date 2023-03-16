@@ -30,6 +30,8 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     float blinkIntensity = 10;
     float blinkDuration = 0.1f;
     float blinkTimer;
+    bool bloodOut = false;
+    int Onoff = 1;
 
     void Start() {
         currentHealth = maxHealth;
@@ -88,15 +90,16 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
 
         }
-
+        
 
         var chanche = Random.Range(1, maxHealth - 1);
         if (currentHealth == chanche) {
+            if(!bloodOut)
 
             Blood();
-
+           
         }
-
+      
 
     }
 
@@ -133,10 +136,12 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         cd = 0;
     }
     void Blood() {
-
-        Instantiate(vfx, transform.position, Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)));
-
-        Debug.Log("bloood");
+        
+            Instantiate(vfx, transform.position, Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)));
+        bloodOut = true;
+            
+            Debug.Log("bloood");
+        
 
     }
     public void TakeDamage(HitData hit) {
