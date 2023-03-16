@@ -406,9 +406,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Combo: 0
-  MaxCombo: 0
-  MinCombo: 0
   ComboCoolOff: 10
+  comboranks:
+  - C
+  - B
+  - A
+  - S
   bar: {fileID: 1148746606}
   combo: {fileID: 1032772122}
   timepassed: 0

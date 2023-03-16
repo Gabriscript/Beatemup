@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class comboManger : MonoBehaviour
 {
     [Header("comboSettings")]
-    public float Combo=0;
+    public int Combo=0;
     public float ComboCoolOff;
-    
+    public string[] comboranks;
 
     
     
@@ -34,17 +34,24 @@ public class comboManger : MonoBehaviour
     {
         timepassed += Time.deltaTime;
         bar.fillAmount = (ComboCoolOff - timepassed) / ComboCoolOff;
-        combo.text = ("Combo" + Combo);
+        combo.text = (comboranks[Combo]);
         if (Input.GetKeyUp(KeyCode.Space))
         {
 
             timepassed = 0;
-            Combo += 1;
+            if (Combo<comboranks.Length-1) 
+            {
+                Combo += 1;
+            }
+            
         }
 
         if (timepassed >= ComboCoolOff)
         {
-            Combo -= 1;
+            if (Combo>0)
+            {
+                Combo -= 1;
+            }
             timepassed = 0;
         }
     }
