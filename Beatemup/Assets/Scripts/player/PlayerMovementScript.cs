@@ -25,11 +25,15 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     int health = 3;
 
     public Transform orientation;
+    
+    public Transform ghostCamera;
 
+    [Header("GFX")]
+    public float GFXrotationSpeed;
+    public Transform playerObj;
+    public Animator animator;
     float horizontalInput;
     float verticalInput;
-    public Animator animator;
-
     Vector3 moveDirection;
 
     Rigidbody rb;
@@ -49,6 +53,20 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
 
         } else {
             rb.drag = 0;
+        }
+        //Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+        Vector3 viewDir = Vector3.ProjectOnPlane(ghostCamera.forward, Vector3.up);
+
+        //Vector3 view = player.position - transform.position;
+        //view.z = 0;
+        orientation.forward = viewDir.normalized;
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        if (inputDir != Vector3.zero)
+        {
+            playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * GFXrotationSpeed);
         }
     }
 
