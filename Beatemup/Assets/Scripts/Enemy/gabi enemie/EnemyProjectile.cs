@@ -29,34 +29,20 @@ public class EnemyProjectile : MonoBehaviour {
     }
 
 
-    void Update() {
+    void FixedUpdate() {
         lastvelocity = rb.velocity;
 
         if (speed != 0 && rb != null) {
-            rb.position += transform.forward * speed * Time.deltaTime;
+            //rb.position += transform.forward * speed * Time.deltaTime;
+            rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
         }
         Destroy(gameObject, 5);
 
     }
 
     private void OnCollisionEnter(Collision collision) {
-        var origin = collision.contacts[0].point + 0.5f * Vector3.up;
-        var targetPos = enemy[0].transform.position + 0.5f * Vector3.up;
-        var dir = targetPos - origin;
-        bool hit = Physics.Raycast(origin, dir, dir.magnitude);
+       
 
-        if (hit && Vector3.Angle(transform.forward, dir) < 90) {
-            if (Input.GetKey(KeyCode.R) && collision.gameObject.CompareTag("Player")) {
-
-
-                BounceBack(collision.contacts[0].normal);
-                print("going back to enemie");
-
-
-            }
-
-
-        } else if (hit && Vector3.Angle(transform.forward, dir) > 90) {
 
 
             var c = collision.collider.GetComponentInParent<IDamageable>();
@@ -67,7 +53,7 @@ public class EnemyProjectile : MonoBehaviour {
 
 
             }
-
+            //spawn hitvfx
             ContactPoint contact = collision.contacts[0];
             Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
             Vector3 pos = contact.point;
@@ -76,19 +62,24 @@ public class EnemyProjectile : MonoBehaviour {
             Destroy(hitvfx, particlehit.main.duration);
             Destroy(gameObject);
 
+
         }
-    }
-    private void BounceBack(Vector3 collisionNormal) {
-        rb.transform.Rotate(0, 180, 0);
 
-        var speed = lastvelocity.magnitude;
-        var bounceDirection = Vector3.Reflect(lastvelocity, collisionNormal);
-        var directionToEnemy = enemy[0].transform.position - transform.position;
-
-        var direction = Vector3.Lerp(bounceDirection, directionToEnemy, 1);
-
-        Debug.Log("Out Direction: " + direction);
-        rb.velocity = direction * speed;
     }
 
-}
+    /* private void BounceBack(Vector3 collisionNormal) {
+         rb.transform.Rotate(0, 180, 0);
+
+         var speed = lastvelocity.magnitude;
+         var bounceDirection = Vector3.Reflect(lastvelocity, collisionNormal);
+         var directionToEnemy = enemy[0].transform.position - transform.position;
+
+         var direction = Vector3.Lerp(bounceDirection, directionToEnemy, 1);
+
+         Debug.Log("Out Direction: " + direction);
+         rb.velocity = direction * speed;
+     }*/
+
+  
+
+
