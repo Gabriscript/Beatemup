@@ -31,7 +31,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     float blinkDuration = 0.1f;
     float blinkTimer;
     bool bloodOut = false;
-    int Onoff = 1;
+ 
 
     void Start() {
         currentHealth = maxHealth;
@@ -92,8 +92,8 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         }
         
 
-        var chanche = Random.Range(1, maxHealth - 1);
-        if (currentHealth == chanche) {
+        var chance = Random.Range(1, maxHealth - 1);
+        if (currentHealth == chance) {
             if(!bloodOut)
 
             Blood();
