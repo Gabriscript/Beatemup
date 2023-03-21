@@ -41,7 +41,8 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     void Start() {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     void Update() {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatisGround);
