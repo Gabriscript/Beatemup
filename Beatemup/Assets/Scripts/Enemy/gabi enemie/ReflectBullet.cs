@@ -47,10 +47,10 @@ public class ReflectBullet : MonoBehaviour
                 print("back to enemies");
             } 
           
-         if(angle < maxAngleSider / 2 && angle > maxAngleCenter / 2) {
+         else if( angle < maxAngleCenter ) {
 
                 print("casual");
-                rb.rotation = Quaternion.Euler(0, Random.Range(-270, 270), 0) * rb.rotation;
+                rb.rotation = Quaternion.Euler(0, Random.Range(-maxAngleCenter/2, maxAngleCenter/2), 0) * rb.rotation;
 
             }
 
