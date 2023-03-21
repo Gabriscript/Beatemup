@@ -1,5 +1,74 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4975651006535251781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1139070734324918280}
+  - component: {fileID: 1178715348044860684}
+  - component: {fileID: 5936582251502527222}
+  m_Layer: 0
+  m_Name: Reflcetion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1139070734324918280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975651006535251781}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7909323277004413494}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1178715348044860684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975651006535251781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d24df99580626e346be55ac1473ce427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deflectDistance: 3
+  maxAngleCenter: 90
+  maxAngleSider: 180
+--- !u!65 &5936582251502527222
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975651006535251781}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 6, y: 6, z: 6}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &7909323276268972902
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,6 +134,7 @@ Transform:
   m_Children:
   - {fileID: 7909323276268972901}
   - {fileID: 4532045658834724301}
+  - {fileID: 1139070734324918280}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -4.339, z: 0}
@@ -112,6 +182,7 @@ MonoBehaviour:
   swordbox1: {fileID: 7909323276433446414}
   attackButton1: 324
   attack1duration: 2
+  reflcet: {fileID: 5936582251502527222}
 --- !u!114 &7909323277004413492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +209,9 @@ MonoBehaviour:
   hitbox: {fileID: 0}
   stunduration: 2
   orientation: {fileID: 7909323276268972901}
+  ghostCamera: {fileID: 0}
+  GFXrotationSpeed: 0
+  playerObj: {fileID: 0}
   animator: {fileID: 7909323275200247433}
 --- !u!114 &7909323277004413493
 MonoBehaviour:

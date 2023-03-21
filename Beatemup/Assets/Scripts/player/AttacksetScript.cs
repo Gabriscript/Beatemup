@@ -13,15 +13,21 @@ public class AttacksetScript : MonoBehaviour
     public KeyCode attackButton1 = KeyCode.Mouse1;
     public float attack1duration;
 
+
+    public Collider reflcet;
     void Start()
     {
-
+      
     }
-
+   
     // Update is called once per frame
     void Update()
     {
         attackcheck();
+        if (Input.GetKeyDown(KeyCode.R))
+            reflcet.enabled = true;
+        if (Input.GetKeyUp(KeyCode.R))
+            reflcet.enabled = false;
     }
     public void attackcheck()
     {
