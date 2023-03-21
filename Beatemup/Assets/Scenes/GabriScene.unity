@@ -776,6 +776,7 @@ MonoBehaviour:
   projectile: {fileID: 1535270442166999102, guid: 2c5674b925ab01a408a9867632244edf,
     type: 3}
   firestart: {fileID: 1327583536}
+  player: {fileID: 0}
   healthbar: {fileID: 1982816222}
   vfx: {fileID: 7615417687088828474, guid: a1a53bf2fe2d0f24390d7c721d137600, type: 3}
   maxSightRange: 15
@@ -1592,6 +1593,7 @@ MonoBehaviour:
   projectile: {fileID: 190031355524743427, guid: 01a700e09058a1a4cb632ab68fc30ffb,
     type: 3}
   firestart: {fileID: 765896966}
+  player: {fileID: 0}
   healthbar: {fileID: 361576585}
   vfx: {fileID: 7615417687088828474, guid: a1a53bf2fe2d0f24390d7c721d137600, type: 3}
   maxSightRange: 15
@@ -2060,6 +2062,7 @@ MonoBehaviour:
   projectile: {fileID: 190031355524743427, guid: 01a700e09058a1a4cb632ab68fc30ffb,
     type: 3}
   firestart: {fileID: 1779390476}
+  player: {fileID: 0}
   healthbar: {fileID: 1039748008}
   vfx: {fileID: 7615417687088828474, guid: a1a53bf2fe2d0f24390d7c721d137600, type: 3}
   maxSightRange: 15
@@ -2907,6 +2910,7 @@ MonoBehaviour:
     m_Bits: 256
   projectile: {fileID: 0}
   firestart: {fileID: 0}
+  player: {fileID: 0}
   healthbar: {fileID: 649724640}
   vfx: {fileID: 0}
   maxSightRange: 15
@@ -3070,6 +3074,7 @@ MonoBehaviour:
   projectile: {fileID: 190031355524743427, guid: 01a700e09058a1a4cb632ab68fc30ffb,
     type: 3}
   firestart: {fileID: 521124045}
+  player: {fileID: 0}
   healthbar: {fileID: 2225888806374811450, guid: ddf0736a487505545b4e494b00d193d6,
     type: 3}
   vfx: {fileID: 7615417687088828474, guid: a1a53bf2fe2d0f24390d7c721d137600, type: 3}
@@ -3259,6 +3264,7 @@ MonoBehaviour:
   projectile: {fileID: 190031355524743427, guid: 01a700e09058a1a4cb632ab68fc30ffb,
     type: 3}
   firestart: {fileID: 44006003}
+  player: {fileID: 0}
   healthbar: {fileID: 345283354}
   vfx: {fileID: 7615417687088828474, guid: a1a53bf2fe2d0f24390d7c721d137600, type: 3}
   maxSightRange: 15
@@ -3595,6 +3601,7 @@ MonoBehaviour:
   projectile: {fileID: 190031355524743427, guid: 01a700e09058a1a4cb632ab68fc30ffb,
     type: 3}
   firestart: {fileID: 272198351}
+  player: {fileID: 0}
   healthbar: {fileID: 1833532720}
   vfx: {fileID: 7615417687088828474, guid: a1a53bf2fe2d0f24390d7c721d137600, type: 3}
   maxSightRange: 15
@@ -4123,6 +4130,7 @@ MonoBehaviour:
   projectile: {fileID: 190031355524743427, guid: 01a700e09058a1a4cb632ab68fc30ffb,
     type: 3}
   firestart: {fileID: 1231160317}
+  player: {fileID: 0}
   healthbar: {fileID: 511688478}
   vfx: {fileID: 7615417687088828474, guid: a1a53bf2fe2d0f24390d7c721d137600, type: 3}
   maxSightRange: 15

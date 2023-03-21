@@ -136,7 +136,7 @@ Transform:
   - {fileID: 4532045658834724301}
   - {fileID: 1139070734324918280}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -4.339, z: 0}
 --- !u!54 &7909323277004413495
 Rigidbody:
@@ -181,7 +181,8 @@ MonoBehaviour:
   animator: {fileID: 7909323275200247433}
   swordbox1: {fileID: 7909323276433446414}
   attackButton1: 324
-  attack1duration: 2
+  MaxCombo: 3
+  CurrentCombo: 0
   reflcet: {fileID: 5936582251502527222}
 --- !u!114 &7909323277004413492
 MonoBehaviour:

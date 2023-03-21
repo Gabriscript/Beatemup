@@ -15,7 +15,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     public GameObject firestart;
     Material mat;
     NavMeshAgent enemy;
-    public Transform player;
+   Transform player;
     public UIhealthbar healthbar;
     public GameObject vfx;
 
@@ -38,7 +38,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
         enemy = GetComponent<NavMeshAgent>();
-        //player = GameObject.FindGameObjectWithTag("Player").transform;
+       player = GameObject.FindGameObjectWithTag("Player").transform;
         mat = GetComponent<Renderer>().material;
 
 
