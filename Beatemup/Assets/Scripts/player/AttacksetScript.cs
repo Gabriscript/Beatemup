@@ -11,27 +11,35 @@ public class AttacksetScript : MonoBehaviour
     [Header("attack 1")]
     public Collider swordbox1;
     public KeyCode attackButton1 = KeyCode.Mouse1;
-    public float attack1duration;
+    public int MaxCombo = 3;
+    public int CurrentCombo = 0;
 
-    void Start()
-    {
 
-    }
-
+    
+   
     // Update is called once per frame
     void Update()
     {
         attackcheck();
+        if (Input.GetKeyDown(KeyCode.R))
+            reflcet.enabled = true;
+        if (Input.GetKeyUp(KeyCode.R))
+            reflcet.enabled = false;
     }
     public void attackcheck()
     {
-        if (Input.GetKey(attackButton1))
+        if (Input.GetKeyDown(attackButton1))
         {
-            swordbox1.enabled = true;
-            playerStateController.battleState = PlayStateController.BattleState.attacking;
-            playerStateController.hittablestate = PlayStateController.Hittablestate.attacking;
-            animator.SetBool("attack1", true);
-            StartCoroutine(duration("attack1", attack1duration));
+            
+            if (CurrentCombo<MaxCombo)
+            {
+
+                CurrentCombo += 1;
+                animator.SetBool("attack1", true);
+
+            }
+            
+            //StartCoroutine(duration("attack1", attack1duration));
 
         }
     }
@@ -39,10 +47,12 @@ public class AttacksetScript : MonoBehaviour
     {
 
         yield return new WaitForSeconds(duration);
-        animator.SetBool(attackname, false);
-        swordbox1.enabled = false;
-
+        
     }
-
+    public Collider reflcet;
+        void Start()
+        {
+      
+        }
 }
 

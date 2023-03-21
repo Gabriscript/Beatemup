@@ -130,7 +130,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
@@ -149,3 +149,4 @@ MonoBehaviour:
   speed: 6
   muzzle: {fileID: 1776476180279631211, guid: 8754d6a84b2a23e43a3543dcddfaebc0, type: 3}
   hit: {fileID: 4372063640115353282, guid: 3ee4515510bd5b44d91e74955b86f38f, type: 3}
+  enemy: []

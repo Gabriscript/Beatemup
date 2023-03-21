@@ -15,7 +15,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     public GameObject firestart;
     Material mat;
     NavMeshAgent enemy;
-    Transform player;
+   Transform player;
     public UIhealthbar healthbar;
     public GameObject vfx;
 
@@ -31,13 +31,14 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     float blinkDuration = 0.1f;
     float blinkTimer;
     bool bloodOut = false;
-    int Onoff = 1;
+    
+ 
 
     void Start() {
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
         enemy = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+       player = GameObject.FindGameObjectWithTag("Player").transform;
         mat = GetComponent<Renderer>().material;
 
 
@@ -53,7 +54,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         //skinmeshrender.material.color =...
 
 
-
+        
 
         // checking where the player is
         var origin = transform.position + 0.5f * Vector3.up;
@@ -92,8 +93,8 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         }
         
 
-        var chanche = Random.Range(1, maxHealth - 1);
-        if (currentHealth == chanche) {
+        var chance = Random.Range(1, maxHealth - 1);
+        if (currentHealth == chance) {
             if(!bloodOut)
 
             Blood();
