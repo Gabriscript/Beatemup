@@ -13,7 +13,7 @@ public class EnemyProjectile : MonoBehaviour {
     public GameObject hit;
     public GameObject[] enemy;
 
-    Vector3 lastvelocity;
+    
 
 
     void Start() {
@@ -30,7 +30,7 @@ public class EnemyProjectile : MonoBehaviour {
 
 
     void FixedUpdate() {
-        lastvelocity = rb.velocity;
+       
 
         if (speed != 0 && rb != null) {
             //rb.position += transform.forward * speed * Time.deltaTime;
@@ -55,9 +55,9 @@ public class EnemyProjectile : MonoBehaviour {
             }
             //spawn hitvfx
             ContactPoint contact = collision.contacts[0];
-            Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
+            Quaternion rot = Quaternion.FromToRotation(Vector3.forward, contact.normal);
             Vector3 pos = contact.point;
-            var hitvfx = Instantiate(this.hit, pos, rot);
+            var hitvfx = Instantiate(hit, pos, rot);
             var particlehit = hitvfx.transform.GetChild(0).GetComponent<ParticleSystem>();
             Destroy(hitvfx, particlehit.main.duration);
             Destroy(gameObject);
