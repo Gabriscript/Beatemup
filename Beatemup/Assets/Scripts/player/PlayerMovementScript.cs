@@ -22,7 +22,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     [Header("hits")]
     public Collider hitbox;
     public float stunduration;
-    int health = 3;
+    public int health = 3;
 
     public Transform orientation;
     

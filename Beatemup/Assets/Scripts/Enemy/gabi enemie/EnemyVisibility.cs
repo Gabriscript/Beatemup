@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.VFX;
+using static UnityEditor.PlayerSettings;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public enum EnemyType { Melee, Range }
 public class EnemyVisibility : MonoBehaviour, IDamageable {
@@ -16,14 +19,16 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     Material mat;
     NavMeshAgent enemy;
    Transform player;
-    public UIhealthbar healthbar;
-    public GameObject vfx;
+    public  UIhealthbar healthbar;
+    GameObject vfx;
+     GameObject lifeSpawn;
+    Animator anim;
 
 
-    public float maxSightRange = 15f;
-    public float maxSightAngle = 45f;
+     float maxSightRange = 15f;
+    float maxSightAngle = 45f;
     float timeToFire = 4f;
-    float timeToSword = 2f;
+   
     float cd;
     int maxHealth = 5;
     int currentHealth;
@@ -31,8 +36,9 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     float blinkDuration = 0.1f;
     float blinkTimer;
     bool bloodOut = false;
-    
- 
+    bool coolDown = true;
+
+
 
     void Start() {
         currentHealth = maxHealth;
@@ -40,8 +46,9 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         enemy = GetComponent<NavMeshAgent>();
        player = GameObject.FindGameObjectWithTag("Player").transform;
         mat = GetComponent<Renderer>().material;
-
-
+        lifeSpawn = FindObjectOfType<ParticlesMotor>().gameObject;
+        anim = GetComponent<Animator>();
+        vfx = FindObjectOfType<BloodSpawn>().gameObject;
 
     }
 
@@ -53,8 +60,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         mat.color = Color.white * intesity;
         //skinmeshrender.material.color =...
 
-
-        
+        cd += Time.deltaTime;
 
         // checking where the player is
         var origin = transform.position + 0.5f * Vector3.up;
@@ -64,7 +70,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle) {
 
 
-
+            FaceTarget();
 
 
 
@@ -73,17 +79,19 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
                 if (dir.magnitude <= enemy.stoppingDistance) {
 
-                    FaceTarget();
-                    MeleeAttack();
+                   
+                    Invoke ("MeleeAttack",4); 
+                    //MeleeAttack();
                 }
             }
             if (enemyType == EnemyType.Range) {
 
                 if (dir.magnitude <= enemy.stoppingDistance && dir.magnitude > 2) {
-                    FaceTarget();
-                    Shoot();
+                    
+                    if(coolDown == true) 
+                        Shoot();
                 } else if (dir.magnitude <= 2) {
-                    MeleeAttack();
+                    Invoke("MeleeAttack", 4);
                 }
 
 
@@ -118,23 +126,28 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         cd += Time.deltaTime;
         if (cd >= timeToFire) {
 
-
+            anim.SetTrigger("EnemyShoot");
             Instantiate(projectile, firestart.transform.position, firestart.transform.rotation);
-
+            anim.speed = 1f;
+            coolDown = false;
+           
             cd = 0;
 
         }
     }
-
+    public void StartSlowdown() {
+        anim.speed = 0f;
+        coolDown = true;
+    }
     void MeleeAttack() {
 
-
-        cd += Time.deltaTime;
-        if (cd >= timeToSword) {
-
-            //PLAY ANIMATION
-        }
-        cd = 0;
+       
+       
+       // if (cd >= timeToSword) {
+         //   Debug.Log("2");
+            anim.SetTrigger("EnemyAttack");
+        //}
+      
     }
     void Blood() {
         
@@ -147,7 +160,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     }
     public void TakeDamage(HitData hit) {
 
-
+        anim.SetTrigger("EnemyGetHit");
         blinkTimer = blinkDuration; //reset timer
         currentHealth -= hit.damage;
         healthbar.SetHealth(currentHealth);
@@ -171,8 +184,14 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     }
 
     void Die() {
-
+        anim.SetTrigger("EnemyFall");
         Destroy(gameObject, 3);
+        var chance = Random.Range(1, 10);
+        if (chance == 7) {
+            var hitvfx = Instantiate(lifeSpawn, transform.position, Quaternion.identity);
+            var particlehit = hitvfx.transform.GetChild(0).GetComponent<ParticleSystem>();
+            Destroy(hitvfx, particlehit.main.duration);
+        }
 
     }
 

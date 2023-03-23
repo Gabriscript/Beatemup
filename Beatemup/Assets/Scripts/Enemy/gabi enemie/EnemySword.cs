@@ -12,9 +12,9 @@ public class EnemySword : MonoBehaviour {
     void Update() {
 
     }
-    private void OnTriggerEnter(Collider collision) {
+    private void OnCollisionEnter(Collision collision) {
        
-        var c = collision.GetComponent<IDamageable>();
+        var c = collision.collider.GetComponent<IDamageable>();
         if (c != null) {
             print("swordcollision");
            
