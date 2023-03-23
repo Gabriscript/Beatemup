@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttacksetScript : MonoBehaviour
@@ -11,6 +12,8 @@ public class AttacksetScript : MonoBehaviour
     [Header("attack 1")]
     public Collider swordbox1;
     public KeyCode attackButton1 = KeyCode.Mouse1;
+    public float timelength;
+    public float attackSpeed;
     public int MaxCombo = 3;
     public int CurrentCombo = 0;
 
@@ -28,24 +31,19 @@ public class AttacksetScript : MonoBehaviour
     }
     public void attackcheck()
     {
-        if (Input.GetKeyDown(attackButton1))
+        if (Input.GetKey(attackButton1))
         {
-            
-            if (CurrentCombo<MaxCombo)
-            {
-
-                CurrentCombo += 1;
-                animator.SetBool("attack1", true);
-
-            }
-            
-            //StartCoroutine(duration("attack1", attack1duration));
+            animator.SetBool("attack1", true);
+            duration("attack1", timelength);
+            animator.SetFloat("attack1Duration", timelength);
+            animator.SetBool("attack1", false);
 
         }
     }
     IEnumerator duration(string attackname, float duration)
     {
 
+        
         yield return new WaitForSeconds(duration);
         
     }
