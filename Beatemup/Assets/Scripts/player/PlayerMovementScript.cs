@@ -22,7 +22,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     [Header("hits")]
     public Collider hitbox;
     public float stunduration;
-    int health = 3;
+    public int health = 3;
 
     public Transform orientation;
     
@@ -41,7 +41,8 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     void Start() {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     void Update() {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatisGround);
@@ -63,7 +64,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
 
         if (inputDir != Vector3.zero)
         {
-            playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * GFXrotationSpeed);
+           playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * GFXrotationSpeed);
         }
     }
 
@@ -91,7 +92,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         if (moveDirection != Vector3.zero) {
             animator.SetBool("running", true);
             if (grounded) {
-                rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+              rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
             } else if (!grounded) {
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airmultiplier, ForceMode.Force);
 
@@ -109,8 +110,8 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         if (flatVel.magnitude > moveSpeed) {
-            Vector3 limitedvel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedvel.x, rb.velocity.y, limitedvel.z);
+         Vector3 limitedvel = flatVel.normalized * moveSpeed;
+          rb.velocity = new Vector3(limitedvel.x, rb.velocity.y, limitedvel.z);
         }
     }
     public void Jump() {
