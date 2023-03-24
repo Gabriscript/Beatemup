@@ -10,6 +10,7 @@ public class ParticlesMotor : MonoBehaviour {
     public float amplitude = 0.5f;
     public float frequency = 0.5f;
     bool floating;
+    
    
    
     
@@ -23,6 +24,7 @@ public class ParticlesMotor : MonoBehaviour {
         // Store the starting position & rotation of the object
         posOffset = transform.position;
         player = GameObject.FindGameObjectWithTag("Player").transform;
+//FindObjectOfType<EnemyVisibility>().instantieted = true;
     }
 
     // Update is called once per frame
@@ -47,7 +49,7 @@ public class ParticlesMotor : MonoBehaviour {
     }
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Player")) {
-            FindAnyObjectByType<PlayerMovementScript>().health++;
+            FindAnyObjectByType<PlayerMovementScript>().health ++;
             Destroy(gameObject);
 
 

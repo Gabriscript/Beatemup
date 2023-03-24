@@ -20,23 +20,24 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     NavMeshAgent enemy;
    Transform player;
     public  UIhealthbar healthbar;
-    GameObject vfx;
-     GameObject lifeSpawn;
+    public  GameObject vfx;
+    public  GameObject lifeSpawn;
     Animator anim;
 
 
      float maxSightRange = 15f;
     float maxSightAngle = 45f;
     float timeToFire = 4f;
-   
+    public bool instantieted = false;
     float cd;
-    int maxHealth = 5;
+     int maxHealth = 5;
     int currentHealth;
     float blinkIntensity = 10;
     float blinkDuration = 0.1f;
     float blinkTimer;
     bool bloodOut = false;
-    bool coolDown = true;
+    bool coolDown = false;
+    
 
 
 
@@ -46,9 +47,9 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         enemy = GetComponent<NavMeshAgent>();
        player = GameObject.FindGameObjectWithTag("Player").transform;
         mat = GetComponent<Renderer>().material;
-        lifeSpawn = FindObjectOfType<ParticlesMotor>().gameObject;
+       
         anim = GetComponent<Animator>();
-        vfx = FindObjectOfType<BloodSpawn>().gameObject;
+    
 
     }
 
@@ -60,7 +61,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         mat.color = Color.white * intesity;
         //skinmeshrender.material.color =...
 
-        cd += Time.deltaTime;
+       
 
         // checking where the player is
         var origin = transform.position + 0.5f * Vector3.up;
@@ -87,8 +88,10 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
             if (enemyType == EnemyType.Range) {
 
                 if (dir.magnitude <= enemy.stoppingDistance && dir.magnitude > 2) {
-                    
-                    if(coolDown == true) 
+                   
+                    anim.SetTrigger("EnemyShoot");
+                    if (coolDown == true ) 
+
                         Shoot();
                 } else if (dir.magnitude <= 2) {
                     Invoke("MeleeAttack", 4);
@@ -108,9 +111,16 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
             Blood();
            
         }
-      
+        if (currentHealth <= 0) {
 
+            Die();
+            
+                if (!instantieted && chance == 1) {
+                Invoke("LifeSpawn", 2);
+            }
+        }
     }
+
 
     void FaceTarget() {
         Vector3 direction = (player.position - transform.position).normalized;
@@ -123,10 +133,10 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
     }
     void Shoot() {
-        cd += Time.deltaTime;
-        if (cd >= timeToFire) {
+       cd += Time.deltaTime;
+       if (cd >= timeToFire) {
 
-            anim.SetTrigger("EnemyShoot");
+         
             Instantiate(projectile, firestart.transform.position, firestart.transform.rotation);
             anim.speed = 1f;
             coolDown = false;
@@ -143,10 +153,9 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
        
        
-       // if (cd >= timeToSword) {
-         //   Debug.Log("2");
+       
             anim.SetTrigger("EnemyAttack");
-        //}
+        
       
     }
     void Blood() {
@@ -167,10 +176,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         Debug.Log("enemy attacked");
 
 
-        if (currentHealth <= 0) {
-
-            Die();
-        }
+      
 
     }
 
@@ -185,13 +191,22 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
     void Die() {
         anim.SetTrigger("EnemyFall");
-        Destroy(gameObject, 3);
-        var chance = Random.Range(1, 10);
-        if (chance == 7) {
+        Destroy(transform.parent.gameObject, 8);
+       
+      
+
+    }
+    void LifeSpawn() {
+      
+       
+
             var hitvfx = Instantiate(lifeSpawn, transform.position, Quaternion.identity);
-            var particlehit = hitvfx.transform.GetChild(0).GetComponent<ParticleSystem>();
-            Destroy(hitvfx, particlehit.main.duration);
-        }
+            instantieted = true;
+
+            Destroy(hitvfx, 10);
+        
+
+        
 
     }
 

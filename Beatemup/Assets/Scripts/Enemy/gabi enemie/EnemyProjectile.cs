@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
+using static UnityEngine.UI.Image;
 
 public class EnemyProjectile : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class EnemyProjectile : MonoBehaviour {
     public GameObject muzzle;
     public GameObject hit;
     public GameObject[] enemy;
+    PlayerMovementScript player;
 
     
 
@@ -23,6 +25,7 @@ public class EnemyProjectile : MonoBehaviour {
         muzzlevfx.transform.forward = gameObject.transform.forward;
         var particlemuzzle = muzzlevfx.transform.GetChild(0).GetComponent<ParticleSystem>();
         Destroy(muzzlevfx, particlemuzzle.main.duration);
+        player = FindObjectOfType<PlayerMovementScript>();
 
 
 
@@ -30,11 +33,14 @@ public class EnemyProjectile : MonoBehaviour {
 
 
     void FixedUpdate() {
-       
 
+        var origin = transform.position;
+        var targetPos = player.transform.position + Vector3.up;
+        var dir = targetPos - origin;
         if (speed != 0 && rb != null) {
             //rb.position += transform.forward * speed * Time.deltaTime;
-            rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
+           // rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
+          transform.position =  Vector3.MoveTowards(origin, targetPos, Time.deltaTime*speed);
         }
         Destroy(gameObject, 5);
 
