@@ -10,8 +10,10 @@ using UnityEngine.VFX;
 using static UnityEditor.PlayerSettings;
 using static UnityEngine.Rendering.DebugUI.Table;
 
-public enum EnemyType { Melee, Range }
+enum EnemyType { Melee, Range }
+enum EnemyStates {Idle,Walk }
 public class EnemyVisibility : MonoBehaviour, IDamageable {
+    EnemyStates enemystates;
     [SerializeField] EnemyType enemyType;
     public LayerMask visibilityBlockers;
     public GameObject projectile;
@@ -37,6 +39,8 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     float blinkTimer;
     bool bloodOut = false;
     bool coolDown = false;
+    bool isDead = false;
+   
     
 
 
@@ -54,6 +58,10 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     }
 
     void Update() {
+
+        anim.SetBool("EnemyIdle",true);
+        
+
         // blinking effect
         blinkTimer -= Time.deltaTime;
         float lerp = Mathf.Clamp01(blinkTimer / blinkDuration);
@@ -73,14 +81,16 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
             FaceTarget();
 
-
-
+            anim.SetBool("EnemyIdle", false);
+            anim.SetBool("EnemyWalk",true);
             enemy.SetDestination(player.position);
+            
+
             if (enemyType == EnemyType.Melee) {
 
                 if (dir.magnitude <= enemy.stoppingDistance) {
 
-                   
+                    anim.SetBool("EnemyWalk", false);
                     Invoke ("MeleeAttack",4); 
                     //MeleeAttack();
                 }
@@ -88,7 +98,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
             if (enemyType == EnemyType.Range) {
 
                 if (dir.magnitude <= enemy.stoppingDistance && dir.magnitude > 2) {
-                   
+                    anim.SetBool("EnemyWalk", false);
                     anim.SetTrigger("EnemyShoot");
                     if (coolDown == true ) 
 
@@ -111,12 +121,12 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
             Blood();
            
         }
-        if (currentHealth <= 0) {
-
+        if (isDead) {
+          
             Die();
             
                 if (!instantieted && chance == 1) {
-                Invoke("LifeSpawn", 2);
+                LifeSpawn();
             }
         }
     }
@@ -171,11 +181,15 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
         anim.SetTrigger("EnemyGetHit");
         blinkTimer = blinkDuration; //reset timer
+       
         currentHealth -= hit.damage;
         healthbar.SetHealth(currentHealth);
         Debug.Log("enemy attacked");
+        if (currentHealth == 0) {
+            isDead = true;
+        
 
-
+        }
       
 
     }
@@ -190,10 +204,10 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     }
 
     void Die() {
-        anim.SetTrigger("EnemyFall");
-        Destroy(transform.parent.gameObject, 8);
        
-      
+        Destroy(transform.parent.gameObject, 8);
+
+        anim.SetTrigger("EnemyFall");
 
     }
     void LifeSpawn() {
