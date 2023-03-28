@@ -19,8 +19,8 @@ TagManager:
   - whatisground
   - weapon
   - camera
-  - 
-  - 
+  - EnemyProjectile
+  - PlayerProjectile
   - 
   - 
   - 

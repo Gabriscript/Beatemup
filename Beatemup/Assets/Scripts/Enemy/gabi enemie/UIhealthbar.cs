@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class UIhealthbar : MonoBehaviour
 {
-    public Transform target;
-   public  Vector3 offset;
+   
+  
     public Gradient gradient;
     public Image fill;
     public Slider slider;
     void LateUpdate()
     {
-        Vector3 direction = (target.position - Camera.main.transform.position).normalized;
-        bool isBehind = Vector3.Dot(direction, Camera.main.transform.forward) <= 0f;
-        fill.enabled = !isBehind;
-      transform.position = Camera.main.WorldToScreenPoint(target.position+offset);
+       // Vector3 direction = (target.position - Camera.main.transform.position).normalized;
+        //bool isBehind = Vector3.Dot(direction, Camera.main.transform.forward) <= 0f;
+       // fill.enabled = !isBehind;
+      //transform.position = Camera.main.WorldToScreenPoint(target.position+offset);
     }
     public void SetHealth(int health) {
         slider.value = health;
