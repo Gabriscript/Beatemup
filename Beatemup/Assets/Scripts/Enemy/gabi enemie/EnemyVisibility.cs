@@ -12,10 +12,10 @@ using static UnityEditor.PlayerSettings;
 using static UnityEngine.Rendering.DebugUI.Table;
 
 enum EnemyType { Melee, Range }
-enum EnemyStates { Idle, Walk, Fight }
+enum EnemyStates { Idle, Walk, Fight,Death }
 public class EnemyVisibility : MonoBehaviour, IDamageable {
     EnemyStates myStases;
-     EnemyType enemyType;
+    EnemyType enemyType;
    LayerMask visibilityBlockers;
 
     [SerializeField] GameObject firestart;
@@ -25,6 +25,8 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     [HideInInspector]
      public UIhealthbar healthbar; 
      Animator anim;
+    
+    
    
 
     float maxSightRange = 15f;
@@ -42,7 +44,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     bool isDead = false;
      EnemyVisibility[] enemies;
     bool even;
-    
+    float chance;
 
 
 
@@ -55,8 +57,8 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         anim = GetComponent<Animator>();       
         enemies = FindObjectsOfType<EnemyVisibility>();
        visibilityBlockers = LayerMask.GetMask("VisibilityBlocker");
+        chance = UnityEngine.Random.Range(1, maxHealth-1);
 
-        
 
         for (int i = 0; i < enemies.Length; i++) {
 
@@ -70,9 +72,9 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
     void Update() {
 
-      //TODO    projectile ignore layer of other enemy but when reflect change layer 
+     
           //TODO     fix animation
-      //TODO     fix the life energy drop
+     
       //TODO fading out after death
 
 
@@ -84,8 +86,10 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         float lerp = Mathf.Clamp01(blinkTimer / blinkDuration);
         float intesity = (lerp * blinkIntensity) ;
 
+        var color = Color.white * intesity;
+        color.a = 1;
         foreach (var rend in skinmesh) {
-           rend.material.color = Color.white * intesity;
+          rend.material.color = color;
         }
       
 
@@ -108,6 +112,8 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
 
         } else if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && dir.magnitude <= enemy.stoppingDistance) {
+            FaceTarget();
+            enemy.SetDestination(player.position);
 
             if (myStases != EnemyStates.Fight)
                 UpDateBehaviour(EnemyStates.Fight);
@@ -137,32 +143,35 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
                 }
             }
-          
+                     
 
-            FaceTarget();
+        }else if(isDead){
+            if (myStases != EnemyStates.Death)
+                UpDateBehaviour(EnemyStates.Death);
 
-        } else {
+            Die();
+
+            if (!instantieted && chance == 1) {
+                cd += Time.deltaTime;
+                if (cd >= 3)
+                    LifeSpawn();
+            }
+
+        }             
+                
+        else {
             if (myStases != EnemyStates.Idle)
                 UpDateBehaviour(EnemyStates.Idle);
 
         }
-
-
-        var chance = UnityEngine.Random.Range(1, maxHealth - 1);
+      
         if (currentHealth == chance) {
             if(!bloodOut)
 
             Blood();
            
         }
-        if (isDead) {
-          
-            Die();
-            
-                if (!instantieted && chance == 1) {
-                LifeSpawn();
-            }
-        }
+       
     }
 
 
@@ -204,7 +213,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     }
     void Blood() {
         
-            Instantiate(Resources.Load<GameObject>("VFX/VFXPrefab/BloodVFX"), transform.position, Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 360), 0)));
+            Instantiate(Resources.Load<GameObject>("prefab/Blood"), transform.position, Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 360), 0)));
         bloodOut = true;
             
             Debug.Log("bloood");
@@ -214,7 +223,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     public void TakeDamage(HitData hit) {
         anim.ResetTrigger("EnemyAttack");
         anim.ResetTrigger("EnemyShoot");
-       
+        anim.speed = 1;
         anim.SetTrigger("EnemyGetHit");
         blinkTimer = blinkDuration; //reset timer
        
@@ -235,37 +244,39 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
         PlayerMovementScript target = collision.GetComponent<PlayerMovementScript>();
         if (target != null) {
-            target.TakeDamage(new HitData(1, Vector3.back));
+            
+            
+                target.TakeDamage(new HitData(1, Vector3.back));
+
+
         }
     }
 
     void Die() {
-      //var  FadeTime = (Time.time - FadeStartTime) * FadeSpeed;
-        //TimerColor.a = Mathf.SmoothStep(1, 0, FadeTime);
        
-        Destroy(transform.parent.gameObject, 8);
+        // TimerColor.a = Mathf.SmoothStep(1, 0,4);
+        float alpha = 1;
+       alpha -= Time.deltaTime;
+
+        Destroy(transform.parent.gameObject, 4.1f);
         foreach (var rend in skinmesh) {
-          //  rend.material.color.a = 
-                
-                
-                }
+        //   rend.material.color = new Color(0, 0, 0,-alpha );
+
+
+        }
 
          anim.SetBool("Death",true);
 
     }
     void LifeSpawn() {
-      
-       
 
+      
             var hitvfx = Instantiate(Resources.Load<GameObject>("VFX/VFXPrefab/HealthPartciles"), transform.position, Quaternion.identity);
             instantieted = true;
-
+        
             Destroy(hitvfx, 10);
 
-
-
-
-    }
+            }
     void UpDateBehaviour(EnemyStates state) {
 
         myStases = state;
@@ -289,6 +300,10 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
                 anim.SetBool("EnemyIdle", false);
                 anim.SetBool("EnemyWalk", false);
+                break;
+            case EnemyStates.Death:
+                GetComponent<CapsuleCollider>().enabled = false;
+               
                 break;
 
         }

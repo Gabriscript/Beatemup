@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5029502272246232112}
   - component: {fileID: 8581575885299089366}
   - component: {fileID: 6244409441841272732}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: rbullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4898,7 +4898,7 @@ GameObject:
   - component: {fileID: 1243702129319023569}
   - component: {fileID: 2659107897588828305}
   - component: {fileID: 7258616250580216967}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Playerbullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4996,7 +4996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4904457044933224731}
   - component: {fileID: 59202498478983851}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

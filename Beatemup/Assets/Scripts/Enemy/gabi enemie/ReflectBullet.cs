@@ -12,7 +12,7 @@ public class ReflectBullet : MonoBehaviour
     {
         var coll = GetComponent<BoxCollider>();
         coll.size = Vector3.one * (deflectDistance * 2);
-        //coll.
+       
     }
 
     // Update is called once per frame
@@ -41,17 +41,19 @@ public class ReflectBullet : MonoBehaviour
                 return;
 
             var rb = other.GetComponent<Rigidbody>();
+           
 
           if (angle <  maxAngleCenter/2) {
-                rb.rotation = Quaternion.Euler(0, 180, 0) * rb.rotation;
+                rb.rotation = Quaternion.Euler(0, 180, 0) * rb.rotation; // Deflcting to enemy position
                 print("back to enemies");
+                projectile.gameObject.layer = 13;
             } 
           
          else if( angle < maxAngleCenter ) {
 
                 print("casual");
-                rb.rotation = Quaternion.Euler(0, Random.Range(-maxAngleCenter/2, maxAngleCenter/2), 0) * rb.rotation;
-
+                rb.rotation = Quaternion.Euler(0, Random.Range(-maxAngleCenter/2, maxAngleCenter/2), 0) * rb.rotation;    // Random deflection
+                projectile.gameObject.layer = 13;     // can damage enemy changing layer      
             }
 
         }

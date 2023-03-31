@@ -37,10 +37,13 @@ public class EnemyProjectile : MonoBehaviour {
         var origin = transform.position;
         var targetPos = player.transform.position + Vector3.up;
         var dir = targetPos - origin;
+
         if (speed != 0 && rb != null) {
             //rb.position += transform.forward * speed * Time.deltaTime;
-           // rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
-          transform.position =  Vector3.MoveTowards(origin, targetPos, Time.deltaTime*speed);
+
+            Vector3 move = new Vector3(0,0,1);
+            rb.MovePosition(rb.position +transform.forward * speed * Time.deltaTime);
+         
         }
         Destroy(gameObject, 5);
 

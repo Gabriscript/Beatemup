@@ -14,6 +14,6 @@ public class BloodSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+       
     }
 }

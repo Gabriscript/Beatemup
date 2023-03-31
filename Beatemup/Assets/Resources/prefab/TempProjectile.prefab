@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 190031355524743430}
   - component: {fileID: 190031355524743428}
   - component: {fileID: 2511288199507332666}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TempProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
