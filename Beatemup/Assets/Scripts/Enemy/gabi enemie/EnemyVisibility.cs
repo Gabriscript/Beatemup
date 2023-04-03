@@ -8,6 +8,7 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.VFX;
+using static Unity.VisualScripting.StickyNote;
 using static UnityEditor.PlayerSettings;
 using static UnityEngine.Rendering.DebugUI.Table;
 
@@ -18,7 +19,8 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     EnemyType enemyType;
    LayerMask visibilityBlockers;
 
-    [SerializeField] GameObject firestart;
+    [SerializeField] 
+    GameObject firestart;
      SkinnedMeshRenderer[] skinmesh;
      NavMeshAgent enemy;
      Transform player;
@@ -45,10 +47,14 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
      EnemyVisibility[] enemies;
     bool even;
     float chance;
+    bool noticed = false;
+
 
 
 
     void Start() {
+       
+        healthbar = GetComponentInChildren<UIhealthbar>();
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
         enemy = GetComponent<NavMeshAgent>();
@@ -73,7 +79,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     void Update() {
 
      
-          //TODO     fix animation
+          //TODO     Bullet enemy
      
       //TODO fading out after death
 
@@ -100,34 +106,37 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         var targetPos = player.position + 0.5f * Vector3.up;
         var dir = targetPos - origin;
         bool hit = Physics.Raycast(origin, dir, dir.magnitude, visibilityBlockers);
-        if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && dir.magnitude > enemy.stoppingDistance) {
+        if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && !isDead) {  //player get noticed 
 
             if (myStases != EnemyStates.Walk)
                 UpDateBehaviour(EnemyStates.Walk);
-
+           
 
             FaceTarget();
+         
+            noticed = true;
 
-
-
-
-        } else if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && dir.magnitude <= enemy.stoppingDistance) {
+          
+        }
+        if (noticed && dir.magnitude >= enemy.stoppingDistance && !isDead) {  //if player too far get chase
             FaceTarget();
             enemy.SetDestination(player.position);
 
+
+        } else if (noticed && dir.magnitude <= enemy.stoppingDistance) { //if player is inside this range get attacked
             if (myStases != EnemyStates.Fight)
                 UpDateBehaviour(EnemyStates.Fight);
-                              
+
 
 
             if (enemyType == EnemyType.Melee) {
 
-                enemy.stoppingDistance = 1;
+                enemy.stoppingDistance = 2;
+                if (dir.magnitude < 2)
+                    //  anim.SetTrigger("EnemyAttack");
+                    MeleeAttack();
 
-                MeleeAttack();
-
-            }
-             if (enemyType == EnemyType.Range) {
+            } else if (enemyType == EnemyType.Range) {
 
                 enemy.stoppingDistance = 10;
 
@@ -136,6 +145,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
                 anim.SetTrigger("EnemyShoot");
 
                 if (dir.magnitude < 2)
+                  
                     MeleeAttack();
                 else if (coolDown == true && dir.magnitude > 2) {
 
@@ -143,13 +153,17 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
                 }
             }
-                     
 
-        }else if(isDead){
+                
+
+        }
+        if(isDead){
             if (myStases != EnemyStates.Death)
                 UpDateBehaviour(EnemyStates.Death);
 
             Die();
+            enemy.isStopped = true;
+            
 
             if (!instantieted && chance == 1) {
                 cd += Time.deltaTime;
@@ -159,7 +173,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
         }             
                 
-        else {
+       if(!noticed) {
             if (myStases != EnemyStates.Idle)
                 UpDateBehaviour(EnemyStates.Idle);
 
@@ -216,13 +230,12 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
             Instantiate(Resources.Load<GameObject>("prefab/Blood"), transform.position, Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 360), 0)));
         bloodOut = true;
             
-            Debug.Log("bloood");
-        
+                  
 
     }
     public void TakeDamage(HitData hit) {
-        anim.ResetTrigger("EnemyAttack");
-        anim.ResetTrigger("EnemyShoot");
+       // anim.ResetTrigger("EnemyAttack");
+        //anim.ResetTrigger("EnemyShoot");
         anim.speed = 1;
         anim.SetTrigger("EnemyGetHit");
         blinkTimer = blinkDuration; //reset timer
@@ -253,14 +266,26 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     }
 
     void Die() {
-       
+        GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+        
         // TimerColor.a = Mathf.SmoothStep(1, 0,4);
-        float alpha = 1;
-       alpha -= Time.deltaTime;
+       
 
         Destroy(transform.parent.gameObject, 4.1f);
+        float alpha = 100;
+         alpha -= Time.deltaTime;
+        var color = new Color(0, 0, 0, 100);
+        color.a = Mathf.SmoothStep(1, 0, alpha);
+
         foreach (var rend in skinmesh) {
-        //   rend.material.color = new Color(0, 0, 0,-alpha );
+
+            rend.material.color = color;
+                                    //new Color.Lerp(colorBegin, colorEnd, Delay * 0.1f);
+
+
+           // Mathf.SmoothStep(1, 0,alpha);
+
+            //   rend.material.color = new Color(0, 0, 0,-alpha );
 
 
         }
@@ -286,20 +311,21 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
             case EnemyStates.Walk:
                 enemy.SetDestination(player.position);
                 anim.SetBool("EnemyWalk", true);
-                anim.SetBool("EnemyIdle", false);
+               anim.SetBool("EnemyIdle", false);
+               
 
 
                 break;
             case EnemyStates.Idle:
 
                 anim.SetBool("EnemyIdle", true);
-                anim.SetBool("EnemyWalk", false);
-
+             anim.SetBool("EnemyWalk", false);
+               
                 break;
             case EnemyStates.Fight:
 
                 anim.SetBool("EnemyIdle", false);
-                anim.SetBool("EnemyWalk", false);
+                anim.SetBool("EnemyWalk",false);
                 break;
             case EnemyStates.Death:
                 GetComponent<CapsuleCollider>().enabled = false;
