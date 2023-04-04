@@ -48,6 +48,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     bool even;
     float chance;
     bool noticed = false;
+    float fadingTime= 1f;
 
 
 
@@ -158,12 +159,17 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
         }
         if(isDead){
-            if (myStases != EnemyStates.Death)
+            if (myStases != EnemyStates.Death) {
                 UpDateBehaviour(EnemyStates.Death);
 
-            Die();
-            enemy.isStopped = true;
-            
+                Die();
+                enemy.isStopped = true;
+            }
+
+            fadingTime -= Time.deltaTime*0.2f;
+            foreach (var rend in skinmesh) {
+                rend.material.color = new Color(0,0,0,fadingTime); 
+            }
 
             if (!instantieted && chance == 1) {
                 cd += Time.deltaTime;
@@ -204,7 +210,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
        if (cd >= timeToFire) {
 
          
-            Instantiate(Resources.Load<GameObject>("prefab/TempProjectile"), firestart.transform.position, firestart.transform.rotation);
+            Instantiate(Resources.Load<GameObject>("prefab/Enemybullet"), firestart.transform.position, firestart.transform.rotation);
             anim.speed = 1f;
             coolDown = false;
            
@@ -272,23 +278,11 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
        
 
         Destroy(transform.parent.gameObject, 4.1f);
-        float alpha = 100;
-         alpha -= Time.deltaTime;
-        var color = new Color(0, 0, 0, 100);
-        color.a = Mathf.SmoothStep(1, 0, alpha);
+       
+    
+        //color.a = Mathf.SmoothStep(1, 0, alpha);
 
-        foreach (var rend in skinmesh) {
-
-            rend.material.color = color;
-                                    //new Color.Lerp(colorBegin, colorEnd, Delay * 0.1f);
-
-
-           // Mathf.SmoothStep(1, 0,alpha);
-
-            //   rend.material.color = new Color(0, 0, 0,-alpha );
-
-
-        }
+       
 
          anim.SetBool("Death",true);
 
