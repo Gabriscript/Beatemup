@@ -23,6 +23,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     public Collider hitbox;
     public float stunduration;
     public int health = 3;
+    public bool hitted = false;
 
     public Transform orientation;
     
@@ -142,7 +143,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         animator.SetBool("hit", false);
     }
     public void TakeDamage(HitData hit) {
-
+        hitted = true;
         health -=hit.damage;
         Debug.Log("hit");
 

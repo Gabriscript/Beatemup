@@ -12,20 +12,22 @@ public class EnemyProjectile : MonoBehaviour {
     Rigidbody rb;
     public GameObject muzzle;
     public GameObject hit;
-    public GameObject[] enemy;
-    PlayerMovementScript player;
+    PlayStateController player;
 
-    
+
+
+
 
 
     void Start() {
-        enemy = GameObject.FindGameObjectsWithTag("enemie");
+        player = FindObjectOfType<PlayStateController>();
+
         rb = GetComponent<Rigidbody>();
         var muzzlevfx = Instantiate(muzzle, transform.position, Quaternion.identity);
         muzzlevfx.transform.forward = gameObject.transform.forward;
         var particlemuzzle = muzzlevfx.transform.GetChild(0).GetComponent<ParticleSystem>();
         Destroy(muzzlevfx, particlemuzzle.main.duration);
-        player = FindObjectOfType<PlayerMovementScript>();
+
 
 
 
@@ -34,27 +36,32 @@ public class EnemyProjectile : MonoBehaviour {
 
     void FixedUpdate() {
 
-        var origin = transform.position;
-        var targetPos = player.transform.position + Vector3.up;
-        var dir = targetPos - origin;
+
 
         if (speed != 0 && rb != null) {
-            //rb.position += transform.forward * speed * Time.deltaTime;
 
-           // Vector3 move = new Vector3(0,0,1);
-            rb.MovePosition(rb.position +transform.forward * speed * Time.deltaTime);
-         
+            rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
+
         }
         Destroy(gameObject, 5);
 
     }
 
     private void OnCollisionEnter(Collision collision) {
-       
 
 
+        ContactPoint contact = collision.contacts[0];
+        Quaternion rot = Quaternion.FromToRotation(Vector3.forward, contact.normal);
+        Vector3 pos = contact.point;
+        var hitvfx = Instantiate(hit, pos, rot);
+        var particlehit = hitvfx.transform.GetChild(0).GetComponent<ParticleSystem>();
+      
 
-            var c = collision.collider.GetComponentInParent<IDamageable>();
+        var c = collision.collider.GetComponent<IDamageable>();
+
+        if (player.hittablestate == PlayStateController.Hittablestate.normal) {
+
+
             if (c != null) {
 
 
@@ -62,32 +69,25 @@ public class EnemyProjectile : MonoBehaviour {
 
 
             }
-            //spawn hitvfx
-            ContactPoint contact = collision.contacts[0];
-            Quaternion rot = Quaternion.FromToRotation(Vector3.forward, contact.normal);
-            Vector3 pos = contact.point;
-            var hitvfx = Instantiate(hit, pos, rot);
-            var particlehit = hitvfx.transform.GetChild(0).GetComponent<ParticleSystem>();
+        } else if (player.hittablestate == PlayStateController.Hittablestate.attacking) {
+            if (c != null) {
+
+
+                c.TakeDamage(new HitData(0));
+                Instantiate(Resources.Load<GameObject>("VFX/VFXPrefab/Sparks_vfx"), pos, rot);
+
+            }
+           
+
             Destroy(hitvfx, particlehit.main.duration);
             Destroy(gameObject);
-
 
         }
 
     }
+}
 
-    /* private void BounceBack(Vector3 collisionNormal) {
-         rb.transform.Rotate(0, 180, 0);
-
-         var speed = lastvelocity.magnitude;
-         var bounceDirection = Vector3.Reflect(lastvelocity, collisionNormal);
-         var directionToEnemy = enemy[0].transform.position - transform.position;
-
-         var direction = Vector3.Lerp(bounceDirection, directionToEnemy, 1);
-
-         Debug.Log("Out Direction: " + direction);
-         rb.velocity = direction * speed;
-     }*/
+    
 
   
 
