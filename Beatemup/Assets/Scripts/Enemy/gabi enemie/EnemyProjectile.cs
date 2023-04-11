@@ -41,7 +41,7 @@ public class EnemyProjectile : MonoBehaviour {
         if (speed != 0 && rb != null) {
             //rb.position += transform.forward * speed * Time.deltaTime;
 
-            Vector3 move = new Vector3(0,0,1);
+           // Vector3 move = new Vector3(0,0,1);
             rb.MovePosition(rb.position +transform.forward * speed * Time.deltaTime);
          
         }
