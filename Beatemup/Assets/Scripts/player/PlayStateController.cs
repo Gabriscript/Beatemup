@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayStateController : MonoBehaviour
@@ -28,7 +29,24 @@ public class PlayStateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        switch (hittablestate) 
+        {
+        case Hittablestate.normal:
 
+                if(Input.GetKey(KeyCode.Mouse0))
+                {
+                    hittablestate= Hittablestate.attacking;
+                }
+                break;
+        case Hittablestate.attacking:
+
+
+                break;
+        case Hittablestate.GotHit:
+
+
+                break;
+        }
     }
 
 }
