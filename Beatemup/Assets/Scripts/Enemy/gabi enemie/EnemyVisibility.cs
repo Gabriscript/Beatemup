@@ -272,17 +272,10 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     }
 
     void Die() {
-        GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
-        
-        // TimerColor.a = Mathf.SmoothStep(1, 0,4);
-       
+        GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);                   
 
-        Destroy(transform.parent.gameObject, 4.1f);
-       
-    
-        //color.a = Mathf.SmoothStep(1, 0, alpha);
-
-       
+        Destroy(transform.parent.gameObject, 4.1f);        
+           
 
          anim.SetBool("Death",true);
 
@@ -306,6 +299,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
                 enemy.SetDestination(player.position);
                 anim.SetBool("EnemyWalk", true);
                anim.SetBool("EnemyIdle", false);
+              
                
 
 
