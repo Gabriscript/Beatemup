@@ -30,7 +30,11 @@ Transform:
   m_Children:
   - {fileID: 2537838912009313669}
   m_Father: {fileID: 0}
+<<<<<<< Updated upstream
   m_RootOrder: 15
+=======
+  m_RootOrder: 7
+>>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3192459010062457446
 GameObject:
@@ -813,10 +817,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.5930195
   m_Height: 2.25
   m_Direction: 1
-  m_Center: {x: 0, y: 0.06, z: 0}
+  m_Center: {x: 0, y: 0.059999943, z: 0.093019485}
 --- !u!54 &3235392494821624698
 Rigidbody:
   m_ObjectHideFlags: 0
