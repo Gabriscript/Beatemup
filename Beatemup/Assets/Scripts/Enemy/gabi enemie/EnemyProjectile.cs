@@ -13,6 +13,7 @@ public class EnemyProjectile : MonoBehaviour {
     public GameObject muzzle;
     public GameObject hit;
     PlayStateController player;
+    Transform targ;
 
 
 
@@ -21,7 +22,7 @@ public class EnemyProjectile : MonoBehaviour {
 
     void Start() {
         player = FindObjectOfType<PlayStateController>();
-
+        targ = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
         var muzzlevfx = Instantiate(muzzle, transform.position, Quaternion.identity);
         muzzlevfx.transform.forward = gameObject.transform.forward;
@@ -49,7 +50,11 @@ public class EnemyProjectile : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
 
-
+        var origin = transform.position + 0.5f * Vector3.up;
+        var targetPos = targ.position + 0.5f * Vector3.up;
+        var dir = targetPos - origin;
+        dir.y = 0;
+        dir = dir.normalized;
         ContactPoint contact = collision.contacts[0];
         Quaternion rot = Quaternion.FromToRotation(Vector3.forward, contact.normal);
         Vector3 pos = contact.point;
@@ -65,7 +70,7 @@ public class EnemyProjectile : MonoBehaviour {
             if (c != null) {
 
 
-                c.TakeDamage(new HitData(1, Vector3.back));
+                c.TakeDamage(new HitData(1, dir));
 
 
             }
@@ -76,7 +81,7 @@ public class EnemyProjectile : MonoBehaviour {
 
                 Debug.Log("something");
                 c.TakeDamage(new HitData(0));
-                Instantiate(Resources.Load<GameObject>("VFX/VFXPrefab/Sparks_vfx"), pos, rot);
+                Instantiate(Resources.Load<GameObject>("Prefab/Sparks"), pos, rot);
 
             }
            

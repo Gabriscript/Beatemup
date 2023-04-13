@@ -49,6 +49,8 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     float chance;
     bool noticed = false;
     float fadingTime= 1f;
+    public Collider enemymelee;
+    bool meleestatus=false;
 
 
 
@@ -65,6 +67,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         enemies = FindObjectsOfType<EnemyVisibility>();
        visibilityBlockers = LayerMask.GetMask("VisibilityBlocker");
         chance = UnityEngine.Random.Range(1, maxHealth-1);
+        enemymelee.enabled = false;
 
 
         for (int i = 0; i < enemies.Length; i++) {
@@ -136,6 +139,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
                 if (dir.magnitude < 2)
                     //  anim.SetTrigger("EnemyAttack");
                     MeleeAttack();
+                Invoke("DisableAttack", 0.3f);
 
             } else if (enemyType == EnemyType.Range) {
 
@@ -145,10 +149,11 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
                 anim.SetTrigger("EnemyShoot");
 
-                if (dir.magnitude < 2)
-                  
+                if (dir.magnitude <= 2) {
+
                     MeleeAttack();
-                else if (coolDown == true && dir.magnitude > 2) {
+                    Invoke("DisableAttack",0.3f);
+                } else if (coolDown == true && dir.magnitude > 2) {
 
                     Shoot();
 
@@ -224,7 +229,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     }
     void MeleeAttack() {
 
-
+        enemymelee.enabled = true;
 
         anim.ResetTrigger("EnemyShoot");
         anim.SetTrigger("EnemyAttack");
@@ -321,6 +326,11 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
                 break;
 
         }
+
+    }
+    void DisableAttack() {
+
+        enemymelee.enabled = false;
 
     }
 
