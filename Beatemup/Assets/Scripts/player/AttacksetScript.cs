@@ -37,6 +37,7 @@ public class AttacksetScript : MonoBehaviour
             duration("attack1", timelength);
             animator.SetFloat("attack1Duration", timelength);
             animator.SetBool("attack1", false);
+            playerStateController.attack = true;
 
         }
     }
@@ -50,7 +51,7 @@ public class AttacksetScript : MonoBehaviour
     public Collider reflcet;
         void Start()
         {
-      
+        playerStateController = FindObjectOfType<PlayStateController>();
         }
 }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayStateController : MonoBehaviour
 {
-    bool passive = true;
+   public  bool attack = false;
     PlayerMovementScript player;
     public enum BattleState
     {
@@ -33,13 +33,14 @@ public class PlayStateController : MonoBehaviour
 
     {
 
-        if (Input.GetKey(KeyCode.U)) {
+           if (attack) {
             if (hittablestate != Hittablestate.attacking)
                 UpDateBehaviour(Hittablestate.attacking);
+            attack = false;
+           }
+        
 
-        }
-
-            if (player.hitted) {
+            else if (player.hitted) {
                 if (hittablestate != Hittablestate.GotHit)
                     UpDateBehaviour(Hittablestate.GotHit);
                 player.hitted = false;

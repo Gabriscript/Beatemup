@@ -69,7 +69,7 @@ public class EnemyProjectile : MonoBehaviour {
 
 
             }
-        } else if (player.hittablestate == PlayStateController.Hittablestate.attacking) {
+        }  if (player.attack) {
             if (c != null) {
 
 
