@@ -40,7 +40,7 @@ Transform:
   - {fileID: 6459481086459596136}
   - {fileID: 4627448134694158150}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -4.339, z: 0}
 --- !u!54 &4956291218081090682
 Rigidbody:
@@ -116,6 +116,7 @@ MonoBehaviour:
   hitbox: {fileID: 2220229137814837402}
   stunduration: 2
   health: 3
+  hitted: 0
   orientation: {fileID: 665299310809106435}
   ghostCamera: {fileID: 6459481086459596136}
   GFXrotationSpeed: 5
@@ -349,8 +350,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3176809750631089079}
-  m_LocalRotation: {x: 0.70090926, y: -0.00002729334, z: 0.000026823953, w: 0.71325046}
-  m_LocalPosition: {x: 0, y: 1.1290001, z: 0}
+  m_LocalRotation: {x: 0.70090926, y: -0.00010673329, z: 0.000104893, w: 0.71325046}
+  m_LocalPosition: {x: 0, y: 1.1290002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -639,8 +640,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8376266550234488900}
-  m_LocalRotation: {x: 0.70090926, y: -0.00002729334, z: 0.000026823953, w: 0.71325046}
-  m_LocalPosition: {x: 0, y: 1.1290001, z: 0}
+  m_LocalRotation: {x: 0.70090926, y: -0.00010673329, z: 0.000104893, w: 0.71325046}
+  m_LocalPosition: {x: 0, y: 1.1290002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -912,6 +913,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlaceholderDoll
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371837774181024669, guid: 3a5cf5b5804af3341bc13fc3df3d0123,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
