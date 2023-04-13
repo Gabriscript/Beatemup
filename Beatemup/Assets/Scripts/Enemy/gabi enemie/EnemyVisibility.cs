@@ -50,7 +50,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     bool noticed = false;
     float fadingTime= 1f;
     public Collider enemymelee;
-    bool meleestatus=false;
+    
 
 
 
@@ -81,16 +81,8 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     }
 
     void Update() {
-
-     
-          //TODO     Bullet enemy
-     
-      //TODO fading out after death
-
-
-
-
-
+           
+         
         // blinking effect
         blinkTimer -= Time.deltaTime;
         float lerp = Mathf.Clamp01(blinkTimer / blinkDuration);
@@ -102,8 +94,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
           rend.material.color = color;
         }
       
-
-       
+              
 
         // checking where the player is
         var origin = transform.position + 0.5f * Vector3.up;
@@ -328,7 +319,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         }
 
     }
-    void DisableAttack() {
+   public  void DisableAttack() {
 
         enemymelee.enabled = false;
 

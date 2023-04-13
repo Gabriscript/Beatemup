@@ -33,33 +33,25 @@ public class PlayStateController : MonoBehaviour
 
     {
 
-           if (attack) {
-            if (hittablestate != Hittablestate.attacking)
-                UpDateBehaviour(Hittablestate.attacking);
-           
-           }
-        
-
-            else if (player.hitted) {
-                if (hittablestate != Hittablestate.GotHit)
-                    UpDateBehaviour(Hittablestate.GotHit);
-            Invoke("Deactivate",2);
-
-            }
-
-           else
-                UpDateBehaviour(Hittablestate.normal);
-        
-        
-
-
+          
+        //TODO fix the state : they have to change properly,attack does not receive projectile,reflectng projectile not working to fix
 
 
 
     }
 
     private void Update() {
-      
+        if (attack) {
+            if (hittablestate != Hittablestate.attacking)
+                UpDateBehaviour(Hittablestate.attacking);
+
+        } else if (player.hitted) {
+            if (hittablestate != Hittablestate.GotHit)
+                UpDateBehaviour(Hittablestate.GotHit);
+            Invoke("Deactivate", 2);
+
+        } else
+            UpDateBehaviour(Hittablestate.normal);
     }
 
 
@@ -104,7 +96,7 @@ public class PlayStateController : MonoBehaviour
 
        
         Physics.IgnoreLayerCollision(6, 14, false);
-        Physics.IgnoreLayerCollision(6, 12, false);
+       Physics.IgnoreLayerCollision(6, 12, false);
     }
 
 

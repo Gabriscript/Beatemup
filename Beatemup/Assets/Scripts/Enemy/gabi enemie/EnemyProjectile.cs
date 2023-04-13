@@ -64,31 +64,31 @@ public class EnemyProjectile : MonoBehaviour {
 
         var c = collision.collider.GetComponent<IDamageable>();
 
-        if (player.hittablestate == PlayStateController.Hittablestate.normal) {
+          if (player.hittablestate == PlayStateController.Hittablestate.normal) {
 
 
-            if (c != null) {
+              if (c != null) {
 
 
-                c.TakeDamage(new HitData(1, dir));
+                  c.TakeDamage(new HitData(1, dir));
+                Debug.Log("projectile hit u");
+
+              }
+          } 
+
+          if (player.hittablestate == PlayStateController.Hittablestate.attacking) {
+              if (c != null) {
+
+                  Debug.Log("something");
+                  c.TakeDamage(new HitData(0));
+                  Instantiate(Resources.Load<GameObject>("Prefab/Sparks"), pos, rot);
+
+              }
 
 
-            }
-        } 
-        
-        if (player.hittablestate == PlayStateController.Hittablestate.attacking) {
-            if (c != null) {
 
-                Debug.Log("something");
-                c.TakeDamage(new HitData(0));
-                Instantiate(Resources.Load<GameObject>("Prefab/Sparks"), pos, rot);
 
-            }
-           
-
-           
-
-        }
+          }
         Destroy(hitvfx, particlehit.main.duration);
         Destroy(gameObject);
     }
