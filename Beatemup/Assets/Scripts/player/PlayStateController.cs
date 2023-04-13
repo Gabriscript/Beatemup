@@ -18,7 +18,7 @@ public class PlayStateController : MonoBehaviour
         GotHit,
         attacking
     }
-    public Hittablestate hittablestate = Hittablestate.normal;
+    public Hittablestate hittablestate;
 
 
     
@@ -36,18 +36,18 @@ public class PlayStateController : MonoBehaviour
            if (attack) {
             if (hittablestate != Hittablestate.attacking)
                 UpDateBehaviour(Hittablestate.attacking);
-            attack = false;
+           
            }
         
 
             else if (player.hitted) {
                 if (hittablestate != Hittablestate.GotHit)
                     UpDateBehaviour(Hittablestate.GotHit);
-                player.hitted = false;
+            Invoke("Deactivate",2);
 
             }
 
-            if (hittablestate != Hittablestate.normal)
+           else
                 UpDateBehaviour(Hittablestate.normal);
         
         
@@ -89,9 +89,12 @@ public class PlayStateController : MonoBehaviour
 
 
     }
+    void Deactivate() {
+        player.hitted = false;
+    }
     private IEnumerator Invulnerability() {
 
-        Physics.IgnoreLayerCollision(6, 7, true);
+        Physics.IgnoreLayerCollision(6, 14, true);
         Physics.IgnoreLayerCollision(6, 12, true);
 
 
@@ -100,7 +103,7 @@ public class PlayStateController : MonoBehaviour
 
 
        
-        Physics.IgnoreLayerCollision(6, 7, false);
+        Physics.IgnoreLayerCollision(6, 14, false);
         Physics.IgnoreLayerCollision(6, 12, false);
     }
 

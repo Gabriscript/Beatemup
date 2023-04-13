@@ -69,21 +69,23 @@ public class EnemyProjectile : MonoBehaviour {
 
 
             }
-        }  if (player.attack) {
+        } 
+        
+        if (player.hittablestate == PlayStateController.Hittablestate.attacking) {
             if (c != null) {
 
-
+                Debug.Log("something");
                 c.TakeDamage(new HitData(0));
                 Instantiate(Resources.Load<GameObject>("VFX/VFXPrefab/Sparks_vfx"), pos, rot);
 
             }
            
 
-            Destroy(hitvfx, particlehit.main.duration);
-            Destroy(gameObject);
+           
 
         }
-
+        Destroy(hitvfx, particlehit.main.duration);
+        Destroy(gameObject);
     }
 }
 
