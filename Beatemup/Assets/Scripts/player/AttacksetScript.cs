@@ -23,7 +23,11 @@ public class AttacksetScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        attackcheck();
+        if (Input.GetKey(KeyCode.Mouse0)) 
+        {
+            animator.Play("Attack");
+        }
+        //attackcheck();
         if (Input.GetKeyDown(KeyCode.R))
             reflcet.enabled = true;
         if (Input.GetKeyUp(KeyCode.R))
