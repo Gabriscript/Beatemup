@@ -46,8 +46,10 @@ public class PlayStateController : MonoBehaviour
             print("attackstatetrue");
             if (hittablestate != Hittablestate.attacking)
                 UpDateBehaviour(Hittablestate.attacking);
+            Invoke("EndAttack",0.3f);
 
         } else if (player.hitted) {
+           
             if (hittablestate != Hittablestate.GotHit)
                 UpDateBehaviour(Hittablestate.GotHit);
             Invoke("Deactivate", 2);
@@ -95,7 +97,7 @@ public class PlayStateController : MonoBehaviour
         Physics.IgnoreLayerCollision(6, 14, true);
         Physics.IgnoreLayerCollision(6, 12, true);
 
-
+        print("invulnerable");
 
         yield return new WaitForSeconds(2);
 

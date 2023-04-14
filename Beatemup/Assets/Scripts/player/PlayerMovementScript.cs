@@ -143,9 +143,10 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         animator.SetBool("hit", false);
     }
     public void TakeDamage(HitData hit) {
+        Debug.Log("hit");
         hitted = true;
         health -=hit.damage;
-        Debug.Log("hit");
+       
 
 
         if (health <= 0) {

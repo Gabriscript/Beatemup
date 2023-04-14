@@ -22,27 +22,20 @@ public class EnemySword : MonoBehaviour {
         var dir = targetPos - origin;
         dir.y = 0;
         dir = dir.normalized;
-        var c = collision.GetComponent<IDamageable>();
-        Debug.Log("i got hit");
+        var c = collision.GetComponentInParent<IDamageable>();
+        
         if (player.hittablestate == PlayStateController.Hittablestate.normal) {
-
-
+            
             if (c != null) {
-
-
+              
                 c.TakeDamage(new HitData(1,dir));
-
-
             }
         }else if(player.hittablestate == PlayStateController.Hittablestate.attacking) {
             if (c != null) {
 
-
                 c.TakeDamage(new HitData(1));
 
-
             }
-
-        }
+        } 
     }
     }

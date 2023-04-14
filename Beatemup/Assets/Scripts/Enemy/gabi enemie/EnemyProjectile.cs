@@ -62,7 +62,7 @@ public class EnemyProjectile : MonoBehaviour {
         var particlehit = hitvfx.transform.GetChild(0).GetComponent<ParticleSystem>();
       
 
-        var c = collision.collider.GetComponent<IDamageable>();
+        var c = collision.collider.GetComponentInParent<IDamageable>();
 
           if (player.hittablestate == PlayStateController.Hittablestate.normal) {
 
