@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayStateController : MonoBehaviour
 {
+    Animator animator;
    public  bool attack = false;
     PlayerMovementScript player;
     public enum BattleState
@@ -42,6 +43,7 @@ public class PlayStateController : MonoBehaviour
 
     private void Update() {
         if (attack) {
+            print("attackstatetrue");
             if (hittablestate != Hittablestate.attacking)
                 UpDateBehaviour(Hittablestate.attacking);
 
@@ -84,6 +86,10 @@ public class PlayStateController : MonoBehaviour
     void Deactivate() {
         player.hitted = false;
     }
+    public void EndAttack() {
+        attack = false;
+    }
+
     private IEnumerator Invulnerability() {
 
         Physics.IgnoreLayerCollision(6, 14, true);
