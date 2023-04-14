@@ -124,8 +124,8 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         readyToJump = true;
     }
 
-    public void OnCollisionEnter(Collision col) {
-        var c = col.collider.GetComponent<IDamageable>();
+    public void OnTriggerEnter(Collider col) {
+        var c = col.GetComponent<IDamageable>();
         if (c != null) {
             print("swordcollision");
 

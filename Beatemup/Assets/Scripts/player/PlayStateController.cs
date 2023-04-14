@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayStateController : MonoBehaviour
 {
-    bool passive = true;
+    Animator animator;
+   public  bool attack = false;
     PlayerMovementScript player;
     public enum BattleState
     {
@@ -18,7 +19,7 @@ public class PlayStateController : MonoBehaviour
         GotHit,
         attacking
     }
-    public Hittablestate hittablestate = Hittablestate.normal;
+    public Hittablestate hittablestate;
 
 
     
@@ -33,32 +34,26 @@ public class PlayStateController : MonoBehaviour
 
     {
 
-        if (Input.GetKey(KeyCode.U)) {
-            if (hittablestate != Hittablestate.attacking)
-                UpDateBehaviour(Hittablestate.attacking);
-
-        }
-
-            if (player.hitted) {
-                if (hittablestate != Hittablestate.GotHit)
-                    UpDateBehaviour(Hittablestate.GotHit);
-                player.hitted = false;
-
-            }
-
-            if (hittablestate != Hittablestate.normal)
-                UpDateBehaviour(Hittablestate.normal);
-        
-        
-
-
+          
+        //TODO fix the state : they have to change properly,attack does not receive projectile,reflectng projectile not working to fix
 
 
 
     }
 
     private void Update() {
-      
+        if (attack) {
+            print("attackstatetrue");
+            if (hittablestate != Hittablestate.attacking)
+                UpDateBehaviour(Hittablestate.attacking);
+
+        } else if (player.hitted) {
+            if (hittablestate != Hittablestate.GotHit)
+                UpDateBehaviour(Hittablestate.GotHit);
+            Invoke("Deactivate", 2);
+
+        } else
+            UpDateBehaviour(Hittablestate.normal);
     }
 
 
@@ -88,9 +83,16 @@ public class PlayStateController : MonoBehaviour
 
 
     }
+    void Deactivate() {
+        player.hitted = false;
+    }
+    public void EndAttack() {
+        attack = false;
+    }
+
     private IEnumerator Invulnerability() {
 
-        Physics.IgnoreLayerCollision(6, 7, true);
+        Physics.IgnoreLayerCollision(6, 14, true);
         Physics.IgnoreLayerCollision(6, 12, true);
 
 
@@ -99,8 +101,8 @@ public class PlayStateController : MonoBehaviour
 
 
        
-        Physics.IgnoreLayerCollision(6, 7, false);
-        Physics.IgnoreLayerCollision(6, 12, false);
+        Physics.IgnoreLayerCollision(6, 14, false);
+       Physics.IgnoreLayerCollision(6, 12, false);
     }
 
 

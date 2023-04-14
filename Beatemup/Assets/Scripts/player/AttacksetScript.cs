@@ -26,6 +26,9 @@ public class AttacksetScript : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0)) 
         {
             animator.Play("Attack");
+            swordbox1.enabled = true;
+            playerStateController.attack = true;
+            Invoke("Deactivatecollider",0.5f);
         }
         //attackcheck();
         if (Input.GetKeyDown(KeyCode.R))
@@ -41,6 +44,7 @@ public class AttacksetScript : MonoBehaviour
             duration("attack1", timelength);
             animator.SetFloat("attack1Duration", timelength);
             animator.SetBool("attack1", false);
+           
 
         }
     }
@@ -54,7 +58,11 @@ public class AttacksetScript : MonoBehaviour
     public Collider reflcet;
         void Start()
         {
-      
+        playerStateController = FindObjectOfType<PlayStateController>();
         }
+    void Deactivatecollider() {
+        swordbox1.enabled = false;
+
+    }
 }
 

@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 2537838912009313669}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3192459010062457446
 GameObject:
@@ -605,7 +605,7 @@ PrefabInstance:
     - target: {fileID: 4760810674323680227, guid: 1f53e06a94a99ec469765775285651ca,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4863164176344320167, guid: 1f53e06a94a99ec469765775285651ca,
         type: 3}
@@ -793,6 +793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firestart: {fileID: 3192459010062457446}
   healthbar: {fileID: 3881123379778076629}
+  enemymelee: {fileID: 5560453357225263968}
 --- !u!136 &7956933196366486619
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -812,10 +813,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.5930195
   m_Height: 2.25
   m_Direction: 1
-  m_Center: {x: 0, y: 0.06, z: 0}
+  m_Center: {x: 0, y: 0.059999943, z: 0.093019485}
 --- !u!54 &3235392494821624698
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -966,12 +967,12 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.49833438
-  m_Center: {x: -0.11, y: 0.00000007388289, z: 0.14229791}
+  m_Radius: 0.18036047
+  m_Center: {x: -0.11000005, y: 0.020403171, z: -0.017722696}
 --- !u!114 &7674627563183613036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,6 +985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 919a34a17e7a6ec4382d94975b9859a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 65723023678486670}
 --- !u!1001 &3647059484536731736
 PrefabInstance:
   m_ObjectHideFlags: 0
