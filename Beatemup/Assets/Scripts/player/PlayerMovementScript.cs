@@ -36,6 +36,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     float horizontalInput;
     float verticalInput;
     Vector3 moveDirection;
+    PlayStateController playState;
 
     Rigidbody rb;
 
@@ -44,6 +45,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        playState = FindObjectOfType<PlayStateController>();
     }
     void Update() {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatisGround);
@@ -144,7 +146,9 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     }
     public void TakeDamage(HitData hit) {
         Debug.Log("hit");
-        hitted = true;
+        if (playState.attack) hitted = true; else hitted = false;
+            
+          if(hitted)
         health -=hit.damage;
        
 

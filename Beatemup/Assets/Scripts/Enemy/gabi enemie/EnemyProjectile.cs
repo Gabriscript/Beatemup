@@ -14,6 +14,7 @@ public class EnemyProjectile : MonoBehaviour {
     public GameObject hit;
     PlayStateController player;
     Transform targ;
+    PlayerMovementScript playerhit;
 
 
 
@@ -21,6 +22,7 @@ public class EnemyProjectile : MonoBehaviour {
 
 
     void Start() {
+        playerhit = FindObjectOfType<PlayerMovementScript>();
         player = FindObjectOfType<PlayStateController>();
         targ = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
@@ -78,11 +80,11 @@ public class EnemyProjectile : MonoBehaviour {
 
           if (player.hittablestate == PlayStateController.Hittablestate.attacking) {
               if (c != null) {
-
+               // playerhit.hitted = false;
                   Debug.Log("something");
                   c.TakeDamage(new HitData(0));
                   Instantiate(Resources.Load<GameObject>("Prefab/Sparks"), pos, rot);
-
+               
               }
 
 

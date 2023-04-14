@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayStateController : MonoBehaviour
 {
-    Animator animator;
-   public  bool attack = false;
+    float blinkIntensity = 10;
+    float blinkDuration = 0.05f;
+    float blinkTimer;
+    public  bool attack = false;
+    SkinnedMeshRenderer[] skinmesh;
     PlayerMovementScript player;
     public enum BattleState
     {
@@ -24,8 +27,10 @@ public class PlayStateController : MonoBehaviour
 
     
     void Start()
+
     {
         player = FindObjectOfType<PlayerMovementScript>();
+        skinmesh = GetComponentsInChildren<SkinnedMeshRenderer>();
     }
 
    
@@ -34,22 +39,35 @@ public class PlayStateController : MonoBehaviour
 
     {
 
-          
-        //TODO fix the state : they have to change properly,attack does not receive projectile,reflectng projectile not working to fix
+          //TODO during combo attack state is linked
+        
 
 
 
     }
 
     private void Update() {
+      /*  blinkTimer -= Time.deltaTime;
+        float lerp = Mathf.Clamp01(blinkTimer / blinkDuration);
+        float intesity = (lerp * blinkIntensity);
+
+        var color = Color.white * intesity;
+        color.a = 1;
+        foreach (var rend in skinmesh) {
+            rend.material.color = color;
+        }*/
+
+
+
         if (attack) {
-            print("attackstatetrue");
+           
             if (hittablestate != Hittablestate.attacking)
                 UpDateBehaviour(Hittablestate.attacking);
-            Invoke("EndAttack",0.3f);
+        Invoke("EndAttack",1f);
 
-        } else if (player.hitted) {
+        }  else if (player.hitted ) {
            
+
             if (hittablestate != Hittablestate.GotHit)
                 UpDateBehaviour(Hittablestate.GotHit);
             Invoke("Deactivate", 2);
@@ -70,6 +88,7 @@ public class PlayStateController : MonoBehaviour
                 break;
 
             case Hittablestate.GotHit:
+               
                 StartCoroutine(Invulnerability());
                 break;
             case Hittablestate.normal:
@@ -87,6 +106,7 @@ public class PlayStateController : MonoBehaviour
     }
     void Deactivate() {
         player.hitted = false;
+        
     }
     public void EndAttack() {
         attack = false;
@@ -97,6 +117,7 @@ public class PlayStateController : MonoBehaviour
         Physics.IgnoreLayerCollision(6, 14, true);
         Physics.IgnoreLayerCollision(6, 12, true);
 
+        //blinkTimer = blinkDuration;
         print("invulnerable");
 
         yield return new WaitForSeconds(2);

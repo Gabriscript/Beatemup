@@ -256,12 +256,15 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
 
     void OnTriggerEnter(Collider collision) {
+        var origin = transform.position + 0.5f * Vector3.up;
+        var targetPos = player.position + 0.5f * Vector3.up;
+        var dir = targetPos - origin;
 
         PlayerMovementScript target = collision.GetComponent<PlayerMovementScript>();
         if (target != null) {
             
             
-                target.TakeDamage(new HitData(1, Vector3.back));
+                target.TakeDamage(new HitData(1, dir));
 
 
         }
