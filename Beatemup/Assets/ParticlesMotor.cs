@@ -47,13 +47,13 @@ public class ParticlesMotor : MonoBehaviour {
         }
            
     }
-    private void OnCollisionEnter(Collision other) {
-        if (other.gameObject.CompareTag("Player")) {
+    private void OnTriggerEnter(Collider other) {
+     
             FindAnyObjectByType<PlayerMovementScript>().health ++;
             Destroy(gameObject);
 
 
-        }
+       
     }
 
 

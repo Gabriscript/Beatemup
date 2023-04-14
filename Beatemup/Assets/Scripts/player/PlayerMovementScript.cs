@@ -23,6 +23,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     public Collider hitbox;
     public float stunduration;
     public int health = 3;
+    public bool hitted = false;
 
     public Transform orientation;
     
@@ -123,8 +124,8 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         readyToJump = true;
     }
 
-    public void OnCollisionEnter(Collision col) {
-        var c = col.collider.GetComponent<IDamageable>();
+    public void OnTriggerEnter(Collider col) {
+        var c = col.GetComponent<IDamageable>();
         if (c != null) {
             print("swordcollision");
 
@@ -142,9 +143,10 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         animator.SetBool("hit", false);
     }
     public void TakeDamage(HitData hit) {
-
-        health -=hit.damage;
         Debug.Log("hit");
+        hitted = true;
+        health -=hit.damage;
+       
 
 
         if (health <= 0) {
