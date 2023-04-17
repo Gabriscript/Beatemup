@@ -9784,6 +9784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6710083320385939332}
+  - component: {fileID: 775786824290618326}
   m_Layer: 0
   m_Name: Sparks
   m_TagString: Untagged
@@ -9805,8 +9806,20 @@ Transform:
   m_Children:
   - {fileID: 4261112552547671853}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &775786824290618326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5202556435726403624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0149a0a3e1ff95f4fb79a842025b1fcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5721322097283530746
 GameObject:
   m_ObjectHideFlags: 0
