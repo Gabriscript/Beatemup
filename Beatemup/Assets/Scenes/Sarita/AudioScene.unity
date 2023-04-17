@@ -166,7 +166,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5126611686869494271, guid: 08a1d9655c313934f86a7ddf6cd1ce4e,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 48313094cc1629e41a2a34148167231d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 07d80abd7694f7a418da6e18bd2b94f3, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -295,11 +295,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -2702512824075419352, guid: 08a1d9655c313934f86a7ddf6cd1ce4e,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 39928827c92bd174a98b916ddb6362a4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5c55ddba7a7084848bfa9df92de4b591, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -469,7 +469,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4405895054903865821, guid: 08a1d9655c313934f86a7ddf6cd1ce4e,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: edc32ac286d3db24abac72086f1b605f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 36a9d941c11653d4eba46a19b3474ec5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -948,7 +948,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6676529267660875504, guid: 08a1d9655c313934f86a7ddf6cd1ce4e,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 06f4a863459ef9a408635c13d18c9b23, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a07147fc45c13ff4cb45e552a172a6b8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1194,19 +1194,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapshotDatas:
   - snapshot: {fileID: 24500006, guid: 08a1d9655c313934f86a7ddf6cd1ce4e, type: 2}
-    transitionSeconds: 3
+    transitionSeconds: 0
     debugKey: 282
   - snapshot: {fileID: -5679264470491635288, guid: 08a1d9655c313934f86a7ddf6cd1ce4e,
       type: 2}
-    transitionSeconds: 3
+    transitionSeconds: 0
     debugKey: 283
   - snapshot: {fileID: -7926344229231347136, guid: 08a1d9655c313934f86a7ddf6cd1ce4e,
       type: 2}
-    transitionSeconds: 3
+    transitionSeconds: 0
     debugKey: 284
   - snapshot: {fileID: 6980286158544709577, guid: 08a1d9655c313934f86a7ddf6cd1ce4e,
       type: 2}
-    transitionSeconds: 3
+    transitionSeconds: 0
     debugKey: 285
 --- !u!4 &2022307472
 Transform:
