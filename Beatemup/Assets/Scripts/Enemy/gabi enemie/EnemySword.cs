@@ -28,12 +28,12 @@ public class EnemySword : MonoBehaviour {
             
             if (c != null) {
               
-                c.TakeDamage(new HitData(1,dir));
+                c.TakeDamage(new HitData(1,dir*100));
             }
         }else if(player.hittablestate == PlayStateController.Hittablestate.attacking) {
             if (c != null) {
 
-                c.TakeDamage(new HitData(1));
+                c.TakeDamage(new HitData(1,dir*100));
 
             }
         } 
