@@ -264,7 +264,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         if (target != null) {
             
             
-                target.TakeDamage(new HitData(1, dir));
+                target.TakeDamage(new HitData(1, dir*100));
 
 
         }

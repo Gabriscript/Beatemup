@@ -26,7 +26,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     public bool hitted = false;
 
     public Transform orientation;
-    
+    public comboManger Combomanger;
     public Transform ghostCamera;
 
     [Header("GFX")]
@@ -130,8 +130,8 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         var c = col.GetComponent<IDamageable>();
         if (c != null) {
             print("swordcollision");
-
-            c.TakeDamage(new HitData(1));
+            Combomanger.currenthits+=2;
+            c.TakeDamage(new HitData(1,Vector3.back));
 
 
         
@@ -147,9 +147,15 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     public void TakeDamage(HitData hit) {
         Debug.Log("hit");
         if (playState.attack) hitted = true; else hitted = false;
-            
-          if(hitted)
+
+        if (hitted) 
+        { 
         health -=hit.damage;
+
+            rb.AddForce(hit.push);
+            //hit.push;
+        }
+        
        
 
 

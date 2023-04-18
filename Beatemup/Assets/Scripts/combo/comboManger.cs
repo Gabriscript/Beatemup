@@ -9,12 +9,14 @@ public class comboManger : MonoBehaviour
     public int Combo=0;
     public float ComboCoolOff;
     public string[] comboranks;
-
+    public int hitsNeeded;
+    public int currenthits=0;
     
     
     public Image bar;
     public Text combo;
     public float timepassed = 0;
+    public bool comboInitiate = false;
 
     public void Start()
     {
@@ -26,6 +28,7 @@ public class comboManger : MonoBehaviour
     public void Update()
     {
 
+        ComboCalculations();
         ComboSystem();
 
     }
@@ -35,7 +38,7 @@ public class comboManger : MonoBehaviour
         timepassed += Time.deltaTime;
         bar.fillAmount = (ComboCoolOff - timepassed) / ComboCoolOff;
         combo.text = (comboranks[Combo]);
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (comboInitiate)
         {
 
             timepassed = 0;
@@ -43,7 +46,7 @@ public class comboManger : MonoBehaviour
             {
                 Combo += 1;
             }
-            
+            comboInitiate= false;
         }
 
         if (timepassed >= ComboCoolOff)
@@ -56,14 +59,21 @@ public class comboManger : MonoBehaviour
         }
     }
 
-    public void ComboRank()
+    public void ComboCalculations()
     {
-
+        if (hitsNeeded<=currenthits) 
+        {
+            comboInitiate= true;
+            currenthits= 0;
+        }
 
 
     }
 
-
+    public void comboup()
+    {
+        
+    }
 
 
     
