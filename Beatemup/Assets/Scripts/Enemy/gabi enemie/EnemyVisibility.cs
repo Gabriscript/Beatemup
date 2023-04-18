@@ -50,9 +50,9 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     bool noticed = false;
     float fadingTime= 1f;
     public Collider enemymelee;
-    
 
 
+    public comboManger ComboManger;
 
 
     void Start() {
@@ -241,7 +241,8 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         anim.speed = 1;
         anim.SetTrigger("EnemyGetHit");
         blinkTimer = blinkDuration; //reset timer
-       
+        ComboManger.currenthits += 1;
+
         currentHealth -= hit.damage;
         healthbar.SetHealth(currentHealth);
         Debug.Log("enemy attacked");
@@ -264,7 +265,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         if (target != null) {
             
             
-                target.TakeDamage(new HitData(1, dir));
+                target.TakeDamage(new HitData(1, dir*100));
 
 
         }
