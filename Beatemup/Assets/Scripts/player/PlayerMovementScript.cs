@@ -130,7 +130,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         var c = col.GetComponent<IDamageable>();
         if (c != null) {
             print("swordcollision");
-            Combomanger.currenthits+=2;
+            
             c.TakeDamage(new HitData(1,Vector3.back));
 
 
