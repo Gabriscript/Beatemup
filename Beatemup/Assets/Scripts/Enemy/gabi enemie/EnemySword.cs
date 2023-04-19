@@ -33,7 +33,7 @@ public class EnemySword : MonoBehaviour {
         }else if(player.hittablestate == PlayStateController.Hittablestate.attacking) {
             if (c != null) {
 
-                c.TakeDamage(new HitData(1,dir*100));
+                c.TakeDamage(new HitData(1));
 
             }
         } 

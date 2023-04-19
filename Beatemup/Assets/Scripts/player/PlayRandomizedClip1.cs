@@ -8,15 +8,16 @@ public class PlayRandomizedClip : MonoBehaviour
     public AudioClip[] clips;
     public bool  RandomizePitch;
     public bool RandomizeVolume;
+    
 
-    public void Play() {
+    public void PlayfootSteps() {
         if (clips.Length == 0) {
             Debug.LogError("Add audio clips in inspector!");
             return;
         }
 
         var clip = clips[Random.Range(0, clips.Length)];
-        source.pitch = Random.Range(-1f, 2f);
+       source.pitch = Random.Range(-1f, 2f);
         source.volume = Random.Range(0.5f , 1f);
         source.PlayOneShot(clip);
 

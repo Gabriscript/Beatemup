@@ -27,9 +27,14 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     [HideInInspector]
      public UIhealthbar healthbar; 
      Animator anim;
+    AudioSource audiosource;
     
-    
-   
+    [SerializeField] private AudioClip ShootSound;
+    [SerializeField] private AudioClip MeleeSound;
+
+
+
+
 
     float maxSightRange = 15f;
     float maxSightAngle = 45f;
@@ -56,7 +61,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
 
     void Start() {
-       
+        audiosource = GetComponent<AudioSource>();
         healthbar = GetComponentInChildren<UIhealthbar>();
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
@@ -105,8 +110,8 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
             if (myStases != EnemyStates.Walk)
                 UpDateBehaviour(EnemyStates.Walk);
-           
 
+          
             FaceTarget();
          
             noticed = true;
@@ -116,7 +121,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         if (noticed && dir.magnitude >= enemy.stoppingDistance && !isDead) {  //if player too far get chase
             FaceTarget();
             enemy.SetDestination(player.position);
-
+          
 
         } else if (noticed && dir.magnitude <= enemy.stoppingDistance) { //if player is inside this range get attacked
             if (myStases != EnemyStates.Fight)
@@ -130,7 +135,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
                 if (dir.magnitude < 2)
                     //  anim.SetTrigger("EnemyAttack");
                     MeleeAttack();
-                Invoke("DisableAttack", 0.3f);
+                //Invoke("DisableAttack", 0.3f);
 
             } else if (enemyType == EnemyType.Range) {
 
@@ -143,7 +148,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
                 if (dir.magnitude <= 2) {
 
                     MeleeAttack();
-                    Invoke("DisableAttack",0.3f);
+                   // Invoke("DisableAttack",0.3f);
                 } else if (coolDown == true && dir.magnitude > 2) {
 
                     Shoot();
@@ -158,7 +163,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
             if (myStases != EnemyStates.Death) {
                 UpDateBehaviour(EnemyStates.Death);
 
-                Die();
+               
                 enemy.isStopped = true;
             }
 
@@ -205,7 +210,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
        cd += Time.deltaTime;
        if (cd >= timeToFire) {
 
-         
+          
             Instantiate(Resources.Load<GameObject>("prefab/Enemybullet"), firestart.transform.position, firestart.transform.rotation);
             anim.speed = 1f;
             coolDown = false;
@@ -221,10 +226,10 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     void MeleeAttack() {
 
         enemymelee.enabled = true;
-
+      
         anim.ResetTrigger("EnemyShoot");
         anim.SetTrigger("EnemyAttack");
-        
+        anim.speed = 1;
       
     }
     void Blood() {
@@ -299,8 +304,9 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
                 enemy.SetDestination(player.position);
                 anim.SetBool("EnemyWalk", true);
                anim.SetBool("EnemyIdle", false);
-              
-               
+             //   FindAnyObjectByType<PlayRandomizedClip>().PlayfootSteps();
+
+
 
 
                 break;
@@ -317,15 +323,22 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
                 break;
             case EnemyStates.Death:
                 GetComponent<CapsuleCollider>().enabled = false;
-               
+                Die();
                 break;
 
         }
 
     }
-   public  void DisableAttack() {
+    public void PlayAttackeffect() {
+        audiosource.PlayOneShot(MeleeSound, 0.2f);
+    }
+    public void PlayShooteffect() {
+        audiosource.PlayOneShot(ShootSound, 0.2f);
+    }
+    public  void DisableAttack() {
 
         enemymelee.enabled = false;
+       
 
     }
 
