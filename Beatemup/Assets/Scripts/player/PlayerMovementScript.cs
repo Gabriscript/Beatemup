@@ -22,7 +22,9 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     [Header("hits")]
     public Collider hitbox;
     public float stunduration;
-    public int health = 3;
+   public  int maxHealth = 5;
+    public int currentHealth;
+    [HideInInspector]
     public bool hitted = false;
 
     public Transform orientation;
@@ -41,6 +43,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     Rigidbody rb;
 
     void Start() {
+        currentHealth = maxHealth;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
@@ -145,13 +148,14 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         animator.SetBool("hit", false);
     }
     public void TakeDamage(HitData hit) {
-        Debug.Log("hit");
-        if (playState.attack) hitted = true; else hitted = false;
+       
+        if (playState.attack) hitted = false; else hitted = true;
 
         if (hitted) 
-        { 
-        health -=hit.damage;
+        {
+            currentHealth -= hit.damage;
 
+            Debug.Log("-1lifepoint");
             rb.AddForce(hit.push);
             //hit.push;
         }
@@ -159,7 +163,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
        
 
 
-        if (health <= 0) {
+        if (currentHealth <= 0) {
             Debug.Log("I´m dead!");
             //Die();
         }
