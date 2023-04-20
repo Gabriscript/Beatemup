@@ -247,7 +247,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         anim.SetTrigger("EnemyGetHit");
         blinkTimer = blinkDuration; //reset timer
         ComboManger.currenthits += 1;
-      GetComponent<Rigidbody>().AddForce(hit.push*500);
+    
         currentHealth -= hit.damage;
         healthbar.SetHealth(currentHealth);
         Debug.Log("enemy attacked");

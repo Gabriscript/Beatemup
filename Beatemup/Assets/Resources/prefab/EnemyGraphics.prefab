@@ -776,10 +776,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6757268268731713000}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f53e06a94a99ec469765775285651ca,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 52057897663013418}
     - targetCorrespondingSourceObject: {fileID: 4760810674323680227, guid: 1f53e06a94a99ec469765775285651ca,
         type: 3}
       insertIndex: -1
@@ -1067,25 +1063,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &52057897663013418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2914928091602798399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 450f099be22ff1f4ca7851414268ab49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 6757268268731713000}
-  clips:
-  - {fileID: 8300000, guid: 3367873d29ddcc54791071c904466059, type: 3}
-  - {fileID: 8300000, guid: 4dc4bcf8f240a3f4db66266ac113dff7, type: 3}
-  - {fileID: 8300000, guid: 7137be973fec2ea44968ceeb2328bfba, type: 3}
-  RandomizePitch: 1
-  RandomizeVolume: 1
 --- !u!1 &7395828009199243661 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4760810674323680227, guid: 1f53e06a94a99ec469765775285651ca,
