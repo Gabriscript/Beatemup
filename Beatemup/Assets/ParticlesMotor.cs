@@ -25,9 +25,9 @@ public class ParticlesMotor : MonoBehaviour {
         // Store the starting position & rotation of the object
         posOffset = transform.position;
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerlife = player.GetComponent<PlayerMovementScript>();
+     
 
-       // playerlife = FindObjectOfType<PlayerMovementScript>();
+        playerlife = FindObjectOfType<PlayerMovementScript>();
         //FindObjectOfType<EnemyVisibility>().instantieted = true;
     }
 
@@ -55,7 +55,8 @@ public class ParticlesMotor : MonoBehaviour {
 
         if (playerlife.currentHealth < playerlife.maxHealth) { 
             playerlife.currentHealth++;
-    }
+            playerlife.healthbar.SetHealth(playerlife.currentHealth);
+        }
     Destroy(gameObject);
 
 

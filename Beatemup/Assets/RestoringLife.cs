@@ -14,6 +14,7 @@ public class RestoringLife : MonoBehaviour {
     private void OnTriggerStay(Collider other) {
         if (player.currentHealth < player.maxHealth)
             player.currentHealth++;
+        player.healthbar.SetHealth(player.currentHealth);
         Healingsymbol.SetActive(true);
     }
     private void OnTriggerExit(Collider other) {

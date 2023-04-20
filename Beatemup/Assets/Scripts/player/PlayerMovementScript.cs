@@ -20,6 +20,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     public bool grounded;
 
     [Header("hits")]
+    public UIhealthbar healthbar;
     public Collider hitbox;
     public float stunduration;
    public  int maxHealth = 5;
@@ -44,6 +45,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
 
     void Start() {
         currentHealth = maxHealth;
+        healthbar.SetMaxHealth(maxHealth);
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
@@ -136,10 +138,11 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
             print("swordcollision");
             
             c.TakeDamage(new HitData(1,Vector3.back));
+           
 
 
-        
-        animator.SetBool("hit", true);
+
+            animator.SetBool("hit", true);
             StartCoroutine(stun());
         }
     }
@@ -155,7 +158,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         if (hitted) 
         {
             currentHealth -= hit.damage;
-
+            healthbar.SetHealth(currentHealth);
             Debug.Log("-1lifepoint");
             rb.AddForce(hit.push);
             //hit.push;

@@ -89,7 +89,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5765017956971768622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.11800003, y: 0.44799995, z: -0.3459587}
+  m_LocalPosition: {x: -0.149, y: 0.272, z: -0.3459587}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -117,7 +117,10 @@ VisualEffect:
     m_Vector2f:
       m_Array: []
     m_Vector3f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0, y: 0, z: 0}
+        m_Name: New Transform_position
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -131,7 +134,10 @@ VisualEffect:
     m_Gradient:
       m_Array: []
     m_NamedObject:
-      m_Array: []
+      m_Array:
+      - m_Value: {fileID: 3286240880769875772}
+        m_Name: New SkinnedMeshRenderer
+        m_Overridden: 1
     m_Bool:
       m_Array: []
 --- !u!73398921 &3939698211391047410
@@ -1269,7 +1275,7 @@ PrefabInstance:
     - target: {fileID: 5972229716737872863, guid: 0aba09069976eac43937957a2814ae07,
         type: 3}
       propertyPath: m_Name
-      value: HealthBar
+      value: EnemyHealthBar
       objectReference: {fileID: 0}
     - target: {fileID: 5972229716737872863, guid: 0aba09069976eac43937957a2814ae07,
         type: 3}
