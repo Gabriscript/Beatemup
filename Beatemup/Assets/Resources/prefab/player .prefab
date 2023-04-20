@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8909966941841508404}
   - component: {fileID: 3116555417131338088}
   - component: {fileID: 122462904186951268}
+  - component: {fileID: 5695835601441256898}
   m_Layer: 6
   m_Name: 'player '
   m_TagString: Player
@@ -106,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7
   groundDrag: 5
-  jumpForce: 12
+  jumpForce: 8
   jumpCooldown: 0.25
   airmultiplier: 0.4
   jumpKey: 32
@@ -117,7 +118,8 @@ MonoBehaviour:
   grounded: 0
   hitbox: {fileID: 2220229137814837402}
   stunduration: 2
-  health: 3
+  maxHealth: 5
+  currentHealth: 0
   hitted: 0
   orientation: {fileID: 665299310809106435}
   Combomanger: {fileID: 7420840912580203526}
@@ -250,6 +252,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5695835601441256898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999772672954687150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ee7325878fac444b2731224614baa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallMultiplier: 5
+  lowJumpMultiplayer: 4
 --- !u!1 &1941280149213372985
 GameObject:
   m_ObjectHideFlags: 0
