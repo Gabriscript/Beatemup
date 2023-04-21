@@ -75,13 +75,13 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         enemymelee.enabled = false;
 
 
-        for (int i = 0; i < enemies.Length; i++) {
+      /*  for (int i = 0; i < enemies.Length; i++) {
 
             even = i % 2 == 0;
 
             if (even) enemies[i].enemyType = EnemyType.Melee; else enemies[i].enemyType = EnemyType.Range;
 
-        }
+        }*/
 
     }
 
@@ -129,7 +129,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
 
 
-            if (enemyType == EnemyType.Melee) {
+          /*  if (enemyType == EnemyType.Melee) {
 
                 enemy.stoppingDistance = 2;
                 if (dir.magnitude < 2)
@@ -137,7 +137,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
                     MeleeAttack();
                 //Invoke("DisableAttack", 0.3f);
 
-            } else if (enemyType == EnemyType.Range) {
+            } else if (enemyType == EnemyType.Range) {*/
 
                 enemy.stoppingDistance = 10;
 
@@ -154,7 +154,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
                     Shoot();
 
                 }
-            }
+            
 
                 
 
@@ -270,7 +270,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         if (target != null) {
             
             
-                target.TakeDamage(new HitData(1, dir*100));
+                target.TakeDamage(new HitData(1, dir));
 
 
         }
