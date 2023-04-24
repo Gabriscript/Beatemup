@@ -36,7 +36,7 @@ public class PlayerSword : MonoBehaviour {
 
                  c.TakeDamage(new HitData(1, dir));
 
-          collision.GetComponentInParent<Rigidbody>().AddForce(dir *350);
+      collision.GetComponentInParent<Rigidbody>().AddForce(dir *350);
 
 
 
