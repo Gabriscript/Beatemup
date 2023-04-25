@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using UnityEngine.VFX;
 using static Unity.VisualScripting.StickyNote;
 using static UnityEditor.PlayerSettings;
@@ -55,6 +56,8 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     bool noticed = false;
     float fadingTime= 1f;
     public Collider enemymelee;
+    float resetNavmesh = 0f;
+    bool damaged = false;
 
 
     public comboManger ComboManger;
@@ -75,53 +78,53 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         enemymelee.enabled = false;
 
 
-        for (int i = 0; i < enemies.Length; i++) {
+      /*  for (int i = 0; i < enemies.Length; i++) {
 
             even = i % 2 == 0;
 
             if (even) enemies[i].enemyType = EnemyType.Melee; else enemies[i].enemyType = EnemyType.Range;
 
-        }
+        }*/
 
     }
 
     void Update() {
-           
-         
+
+
         // blinking effect
         blinkTimer -= Time.deltaTime;
         float lerp = Mathf.Clamp01(blinkTimer / blinkDuration);
-        float intesity = (lerp * blinkIntensity) ;
+        float intesity = (lerp * blinkIntensity);
 
         var color = Color.white * intesity;
         color.a = 1;
         foreach (var rend in skinmesh) {
-          rend.material.color = color;
+            rend.material.color = color;
         }
-      
-              
+
+
 
         // checking where the player is
         var origin = transform.position + 0.5f * Vector3.up;
         var targetPos = player.position + 0.5f * Vector3.up;
         var dir = targetPos - origin;
         bool hit = Physics.Raycast(origin, dir, dir.magnitude, visibilityBlockers);
-        if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && !isDead) {  //player get noticed 
+        if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && !isDead || damaged) {  //player get noticed 
 
             if (myStases != EnemyStates.Walk)
                 UpDateBehaviour(EnemyStates.Walk);
 
-          
+
             FaceTarget();
-         
+
             noticed = true;
 
-          
+
         }
-        if (noticed && dir.magnitude >= enemy.stoppingDistance && !isDead) {  //if player too far get chase
+        if (noticed && dir.magnitude >= enemy.stoppingDistance && !isDead ) {  //if player too far get chase
             FaceTarget();
             enemy.SetDestination(player.position);
-          
+
 
         } else if (noticed && dir.magnitude <= enemy.stoppingDistance) { //if player is inside this range get attacked
             if (myStases != EnemyStates.Fight)
@@ -129,47 +132,47 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
 
 
-            if (enemyType == EnemyType.Melee) {
+            /*  if (enemyType == EnemyType.Melee) {
 
-                enemy.stoppingDistance = 2;
-                if (dir.magnitude < 2)
-                    //  anim.SetTrigger("EnemyAttack");
-                    MeleeAttack();
-                //Invoke("DisableAttack", 0.3f);
+                  enemy.stoppingDistance = 2;
+                  if (dir.magnitude < 2)
+                      //  anim.SetTrigger("EnemyAttack");
+                      MeleeAttack();
+                  //Invoke("DisableAttack", 0.3f);
 
-            } else if (enemyType == EnemyType.Range) {
+              } else if (enemyType == EnemyType.Range) {*/
 
-                enemy.stoppingDistance = 10;
+            enemy.stoppingDistance = 10;
 
-                anim.ResetTrigger("EnemyAttack");
+            anim.ResetTrigger("EnemyAttack");
 
-                anim.SetTrigger("EnemyShoot");
+            anim.SetTrigger("EnemyShoot");
 
-                if (dir.magnitude <= 2) {
+            if (dir.magnitude <= 2) {
 
-                    MeleeAttack();
-                   // Invoke("DisableAttack",0.3f);
-                } else if (coolDown == true && dir.magnitude > 2) {
+                MeleeAttack();
+                // Invoke("DisableAttack",0.3f);
+            } else if (coolDown == true && dir.magnitude > 2) {
 
-                    Shoot();
+                Shoot();
 
-                }
             }
 
-                
+
+
 
         }
-        if(isDead){
+        if (isDead) {
             if (myStases != EnemyStates.Death) {
                 UpDateBehaviour(EnemyStates.Death);
 
-               
-                enemy.isStopped = true;
+
+                //enemy.isStopped = true;
             }
 
-            fadingTime -= Time.deltaTime*0.2f;
+            fadingTime -= Time.deltaTime * 0.2f;
             foreach (var rend in skinmesh) {
-                rend.material.color = new Color(0,0,0,fadingTime); 
+                rend.material.color = new Color(0, 0, 0, fadingTime);
             }
 
             if (!instantieted && chance == 1) {
@@ -178,22 +181,35 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
                     LifeSpawn();
             }
 
-        }             
-                
-       if(!noticed) {
+        }
+
+        if (!noticed) {
             if (myStases != EnemyStates.Idle)
                 UpDateBehaviour(EnemyStates.Idle);
 
         }
-      
-        if (currentHealth == chance) {
-            if(!bloodOut)
 
-            Blood();
-           
+        if (currentHealth == chance) {
+            if (!bloodOut)
+
+                Blood();
+
         }
        
+
     }
+   /* private void FixedUpdate() {
+        if (damaged) {
+            resetNavmesh += Time.deltaTime;
+            if (resetNavmesh == 0.01f) {
+                gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                GetComponent<Rigidbody>().isKinematic = true;
+                damaged = false;
+
+                noticed = true;
+            }
+        }
+    }*/
 
 
     void FaceTarget() {
@@ -241,8 +257,11 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
     }
     public void TakeDamage(HitData hit) {
-       // anim.ResetTrigger("EnemyAttack");
-        //anim.ResetTrigger("EnemyShoot");
+
+      /*  gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        damaged = true;
+        GetComponent<Rigidbody>().isKinematic = false;
+        GetComponent<Rigidbody>().AddForce(hit.push *2, ForceMode.Impulse);*/
         anim.speed = 1;
         anim.SetTrigger("EnemyGetHit");
         blinkTimer = blinkDuration; //reset timer
@@ -270,14 +289,14 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         if (target != null) {
             
             
-                target.TakeDamage(new HitData(1, dir*100));
+                target.TakeDamage(new HitData(1, dir));
 
 
         }
     }
 
     void Die() {
-        GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);                   
+      //  GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);                   
 
         Destroy(transform.parent.gameObject, 4.1f);        
            

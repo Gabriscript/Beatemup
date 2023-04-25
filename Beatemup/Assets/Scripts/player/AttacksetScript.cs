@@ -16,8 +16,11 @@ public class AttacksetScript : MonoBehaviour
     public float attackSpeed;
     public int MaxCombo = 3;
     public int CurrentCombo = 0;
+    PlayerSword playerSword;
 
 
+
+    
     
    
     // Update is called once per frame
@@ -25,6 +28,8 @@ public class AttacksetScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0)) 
         {
+
+            playerSword.StartingNewAttack();
             animator.Play("Attack");
             swordbox1.enabled = true;
             playerStateController.attack = true;
@@ -59,6 +64,8 @@ public class AttacksetScript : MonoBehaviour
         void Start()
         {
         playerStateController = FindObjectOfType<PlayStateController>();
+
+         playerSword = FindObjectOfType<PlayerSword>();
         }
     void Deactivatecollider() {
         swordbox1.enabled = false;
