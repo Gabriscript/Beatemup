@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject PauseMenuUI;
-    public static bool gameIspause = false;
+    [HideInInspector]
+    public  bool gameIspause = false;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {

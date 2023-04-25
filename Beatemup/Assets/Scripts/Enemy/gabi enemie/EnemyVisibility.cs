@@ -109,7 +109,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
         var targetPos = player.position + 0.5f * Vector3.up;
         var dir = targetPos - origin;
         bool hit = Physics.Raycast(origin, dir, dir.magnitude, visibilityBlockers);
-        if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && !isDead && !damaged) {  //player get noticed 
+        if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && !isDead || damaged) {  //player get noticed 
 
             if (myStases != EnemyStates.Walk)
                 UpDateBehaviour(EnemyStates.Walk);
@@ -121,7 +121,7 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
 
 
         }
-        if (noticed && dir.magnitude >= enemy.stoppingDistance && !isDead && !damaged) {  //if player too far get chase
+        if (noticed && dir.magnitude >= enemy.stoppingDistance && !isDead ) {  //if player too far get chase
             FaceTarget();
             enemy.SetDestination(player.position);
 
@@ -195,18 +195,21 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
                 Blood();
 
         }
+       
+
+    }
+   /* private void FixedUpdate() {
         if (damaged) {
             resetNavmesh += Time.deltaTime;
-            if (resetNavmesh == 0.8f) { 
+            if (resetNavmesh == 0.01f) {
                 gameObject.GetComponent<NavMeshAgent>().enabled = true;
                 GetComponent<Rigidbody>().isKinematic = true;
                 damaged = false;
 
-
+                noticed = true;
+            }
         }
-    }
-
-    }
+    }*/
 
 
     void FaceTarget() {
@@ -255,10 +258,10 @@ public class EnemyVisibility : MonoBehaviour, IDamageable {
     }
     public void TakeDamage(HitData hit) {
 
-        gameObject.GetComponent<NavMeshAgent>().enabled = false;
+      /*  gameObject.GetComponent<NavMeshAgent>().enabled = false;
         damaged = true;
         GetComponent<Rigidbody>().isKinematic = false;
-        GetComponent<Rigidbody>().AddForce(hit.push *3, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(hit.push *2, ForceMode.Impulse);*/
         anim.speed = 1;
         anim.SetTrigger("EnemyGetHit");
         blinkTimer = blinkDuration; //reset timer

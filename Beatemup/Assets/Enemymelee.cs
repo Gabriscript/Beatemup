@@ -97,7 +97,7 @@ public class Enemymelee : MonoBehaviour, IDamageable {
         var targetPos = player.position + 0.5f * Vector3.up;
         var dir = targetPos - origin;
         bool hit = Physics.Raycast(origin, dir, dir.magnitude, visibilityBlockers);
-        if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && !isDead && !damaged) {  //player get noticed 
+        if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && !isDead || damaged ) {  //player get noticed 
 
             if (myStases != EnemyMeleeStates.Walk)
                 UpDateBehaviour(EnemyMeleeStates.Walk);
@@ -109,9 +109,11 @@ public class Enemymelee : MonoBehaviour, IDamageable {
 
 
         }
-        if (noticed && dir.magnitude >= enemy.stoppingDistance && !isDead && !damaged) {  //if player too far get chase
+        if (noticed && dir.magnitude >= enemy.stoppingDistance && !isDead  ) {  //if player too far get chase
+          
+
             FaceTarget();
-            enemy.SetDestination(player.position);
+           enemy.SetDestination(player.position);
 
 
         } else if (noticed && dir.magnitude <= enemy.stoppingDistance) { //if player is inside this range get attacked
@@ -128,7 +130,7 @@ public class Enemymelee : MonoBehaviour, IDamageable {
                 UpDateBehaviour(EnemyMeleeStates.Death);
 
 
-                enemy.isStopped = true;
+               // enemy.isStopped = true;
             }
 
             fadingTime -= Time.deltaTime * 0.2f;
@@ -156,19 +158,22 @@ public class Enemymelee : MonoBehaviour, IDamageable {
                 Blood();
 
         }
+       
+
+    }
+   /* private void FixedUpdate() {
         if (damaged) {
             resetNavmesh += Time.deltaTime;
-            if (resetNavmesh == 0.8f) {
+            if (resetNavmesh == 0.01f) {
                 gameObject.GetComponent<NavMeshAgent>().enabled = true;
                 GetComponent<Rigidbody>().isKinematic = true;
                 damaged = false;
 
-
+                noticed = true;
             }
         }
-
     }
-
+   */
 
     void FaceTarget() {
         Vector3 direction = (player.position - transform.position).normalized;
@@ -201,10 +206,12 @@ public class Enemymelee : MonoBehaviour, IDamageable {
 
     }
     public void TakeDamage(HitData hit) {
-        gameObject.GetComponent<NavMeshAgent>().enabled = false;
-        damaged = true;
+        /*gameObject.GetComponent<NavMeshAgent>().enabled = false;
+       
         GetComponent<Rigidbody>().isKinematic = false;
-        GetComponent<Rigidbody>().AddForce(hit.push * 3, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(hit.push *2, ForceMode.Impulse);*/
+
+        damaged = true;
         if (currentHealth >0)
         anim.SetTrigger("RoboDamage");
 

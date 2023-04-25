@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSword : MonoBehaviour {
      List<IDamageable> damagedoncurrentattack = new List<IDamageable>();  
     Transform player;
-    public float knockbackPower = 500;
+  
     void Start()
     {
         player = GetComponentInParent<PlayerMovementScript>().transform;
@@ -43,7 +43,7 @@ public class PlayerSword : MonoBehaviour {
 
                  c.TakeDamage(new HitData(1, dir));
 
-     // collision.GetComponentInParent<Rigidbody>().AddForce(dir *350);
+     collision.GetComponentInParent<Rigidbody>().AddForce(dir *5,ForceMode.Impulse);
 
 
 

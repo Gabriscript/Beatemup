@@ -161,7 +161,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
             healthbar.SetHealth(currentHealth);
             Debug.Log("-1lifepoint");
             rb.AddForce(hit.push);
-            //hit.push;
+           
         }
         
        
@@ -169,7 +169,12 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
 
         if (currentHealth <= 0) {
             Debug.Log("I´m dead!");
-            //Die();
+          //  Maintheme.Stop();
+          //  die.Play();
+          //  Invoke("CallGameOver", 3);
         }
+    }
+    public void CallGameOver() {
+        FindObjectOfType<GameOver>().GameOverfunction();
     }
 }

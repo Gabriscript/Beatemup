@@ -96,7 +96,7 @@ public class EnemyGiant : MonoBehaviour, IDamageable {
         var targetPos = player.position + 0.5f * Vector3.up;
         var dir = targetPos - origin;
         bool hit = Physics.Raycast(origin, dir, dir.magnitude, visibilityBlockers);
-        if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && !isDead && !damaged) {  //player get noticed 
+        if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && !isDead || damaged) {  //player get noticed 
 
             if (myStases != EnemyGiantStates.Walk)
                 UpDateBehaviour(EnemyGiantStates.Walk);
@@ -108,10 +108,10 @@ public class EnemyGiant : MonoBehaviour, IDamageable {
 
 
         }
-        if (noticed && dir.magnitude >= enemy.stoppingDistance && !isDead && !damaged) {  //if player too far get chase
+        if (noticed && dir.magnitude >= enemy.stoppingDistance && !isDead  ) {  //if player too far get chase
             FaceTarget();
             enemy.SetDestination(player.position);
-
+           
 
         } else if (noticed && dir.magnitude <= enemy.stoppingDistance) { //if player is inside this range get attacked
             if (myStases != EnemyGiantStates.Fight)
@@ -127,7 +127,7 @@ public class EnemyGiant : MonoBehaviour, IDamageable {
                 UpDateBehaviour(EnemyGiantStates.Death);
 
 
-                enemy.isStopped = true;
+               // enemy.isStopped = true;
             }
 
             fadingTime -= Time.deltaTime * 0.2f;
@@ -155,19 +155,21 @@ public class EnemyGiant : MonoBehaviour, IDamageable {
                  Blood();
 
          }*/
+      
+    }
+
+   /* private void FixedUpdate() {
         if (damaged) {
             resetNavmesh += Time.deltaTime;
-            if (resetNavmesh == 0.8f) {
+            if (resetNavmesh == 0.01f) {
                 gameObject.GetComponent<NavMeshAgent>().enabled = true;
                 GetComponent<Rigidbody>().isKinematic = true;
                 damaged = false;
 
-
+                noticed = true;
             }
         }
-    }
-
-
+    }*/
     void FaceTarget() {
         Vector3 direction = (player.position - transform.position).normalized;
         Quaternion lookRootation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
@@ -199,10 +201,10 @@ public class EnemyGiant : MonoBehaviour, IDamageable {
 
     }
     public void TakeDamage(HitData hit) {
-        gameObject.GetComponent<NavMeshAgent>().enabled = false;
+       /* gameObject.GetComponent<NavMeshAgent>().enabled = false;
         damaged = true;
         GetComponent<Rigidbody>().isKinematic = false;
-        GetComponent<Rigidbody>().AddForce(hit.push * 3, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(hit.push *2, ForceMode.Impulse);*/
         if (currentHealth > 0)
             anim.SetTrigger("RoboDamage");
 
