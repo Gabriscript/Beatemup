@@ -115,6 +115,13 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
 
     }
 
+    public void dash(float multiplier)
+    {
+        Vector3 dashdistance= playerObj.forward*multiplier;
+        rb.AddForce(dashdistance, ForceMode.Impulse);
+
+    }
+
     public void speedcontrol() {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
