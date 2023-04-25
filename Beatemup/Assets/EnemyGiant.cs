@@ -31,7 +31,7 @@ public class EnemyGiant : MonoBehaviour, IDamageable {
 
     float maxSightRange = 15f;
     float maxSightAngle = 45f;
-
+    bool damaged = false;
     bool instantieted = false;
     float cd;
     int maxHealth = 5;
@@ -40,7 +40,7 @@ public class EnemyGiant : MonoBehaviour, IDamageable {
     float blinkDuration = 0.05f;
     float blinkTimer;
     bool bloodOut = false;
-
+    float resetNavmesh = 0f;
     bool isDead = false;
 
 
@@ -96,7 +96,7 @@ public class EnemyGiant : MonoBehaviour, IDamageable {
         var targetPos = player.position + 0.5f * Vector3.up;
         var dir = targetPos - origin;
         bool hit = Physics.Raycast(origin, dir, dir.magnitude, visibilityBlockers);
-        if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && !isDead) {  //player get noticed 
+        if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && !isDead && !damaged) {  //player get noticed 
 
             if (myStases != EnemyGiantStates.Walk)
                 UpDateBehaviour(EnemyGiantStates.Walk);
@@ -108,7 +108,7 @@ public class EnemyGiant : MonoBehaviour, IDamageable {
 
 
         }
-        if (noticed && dir.magnitude >= enemy.stoppingDistance && !isDead) {  //if player too far get chase
+        if (noticed && dir.magnitude >= enemy.stoppingDistance && !isDead && !damaged) {  //if player too far get chase
             FaceTarget();
             enemy.SetDestination(player.position);
 
@@ -149,13 +149,22 @@ public class EnemyGiant : MonoBehaviour, IDamageable {
 
         }
 
-       /* if (currentHealth == chance) {
-            if (!bloodOut)
+        /* if (currentHealth == chance) {
+             if (!bloodOut)
 
-                Blood();
+                 Blood();
 
-        }*/
+         }*/
+        if (damaged) {
+            resetNavmesh += Time.deltaTime;
+            if (resetNavmesh == 0.8f) {
+                gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                GetComponent<Rigidbody>().isKinematic = true;
+                damaged = false;
 
+
+            }
+        }
     }
 
 
@@ -190,7 +199,10 @@ public class EnemyGiant : MonoBehaviour, IDamageable {
 
     }
     public void TakeDamage(HitData hit) {
-
+        gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        damaged = true;
+        GetComponent<Rigidbody>().isKinematic = false;
+        GetComponent<Rigidbody>().AddForce(hit.push * 3, ForceMode.Impulse);
         if (currentHealth > 0)
             anim.SetTrigger("RoboDamage");
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSword : MonoBehaviour {
-
+     List<IDamageable> damagedoncurrentattack = new List<IDamageable>();  
     Transform player;
     public float knockbackPower = 500;
     void Start()
@@ -18,15 +18,22 @@ public class PlayerSword : MonoBehaviour {
     }
 
   
+    public void StartingNewAttack() {
 
+        damagedoncurrentattack.Clear();
+
+    }
 
    private void OnTriggerEnter(Collider collision) {
          var c = collision.GetComponentInParent<IDamageable>();
+        if (damagedoncurrentattack.Contains(c))
+            return;
+        
          var origin = player.position + 0.5f * Vector3.up;
          var targetPos = collision.transform.position + 0.5f * Vector3.up;
          var dir = targetPos - origin;
-        dir = dir.normalized;
        dir.y = 0;
+        dir = dir.normalized;
 
 
         
@@ -36,7 +43,7 @@ public class PlayerSword : MonoBehaviour {
 
                  c.TakeDamage(new HitData(1, dir));
 
-      collision.GetComponentInParent<Rigidbody>().AddForce(dir *350);
+     // collision.GetComponentInParent<Rigidbody>().AddForce(dir *350);
 
 
 

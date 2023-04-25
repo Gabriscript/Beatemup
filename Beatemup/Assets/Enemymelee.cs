@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.XR;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,7 +28,7 @@ public class Enemymelee : MonoBehaviour, IDamageable {
 
     float maxSightRange = 15f;
     float maxSightAngle = 45f;
-   
+    bool damaged = false;
     bool instantieted = false;
     float cd;
     int maxHealth = 5;
@@ -36,7 +37,7 @@ public class Enemymelee : MonoBehaviour, IDamageable {
     float blinkDuration = 0.05f;
     float blinkTimer;
     bool bloodOut = false;
-   
+    float resetNavmesh = 0f;
     bool isDead = false;
    
    
@@ -96,7 +97,7 @@ public class Enemymelee : MonoBehaviour, IDamageable {
         var targetPos = player.position + 0.5f * Vector3.up;
         var dir = targetPos - origin;
         bool hit = Physics.Raycast(origin, dir, dir.magnitude, visibilityBlockers);
-        if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && !isDead) {  //player get noticed 
+        if (!hit && dir.magnitude < maxSightRange && Vector3.Angle(transform.forward, dir) < maxSightAngle && !isDead && !damaged) {  //player get noticed 
 
             if (myStases != EnemyMeleeStates.Walk)
                 UpDateBehaviour(EnemyMeleeStates.Walk);
@@ -108,7 +109,7 @@ public class Enemymelee : MonoBehaviour, IDamageable {
 
 
         }
-        if (noticed && dir.magnitude >= enemy.stoppingDistance && !isDead) {  //if player too far get chase
+        if (noticed && dir.magnitude >= enemy.stoppingDistance && !isDead && !damaged) {  //if player too far get chase
             FaceTarget();
             enemy.SetDestination(player.position);
 
@@ -155,6 +156,16 @@ public class Enemymelee : MonoBehaviour, IDamageable {
                 Blood();
 
         }
+        if (damaged) {
+            resetNavmesh += Time.deltaTime;
+            if (resetNavmesh == 0.8f) {
+                gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                GetComponent<Rigidbody>().isKinematic = true;
+                damaged = false;
+
+
+            }
+        }
 
     }
 
@@ -190,8 +201,11 @@ public class Enemymelee : MonoBehaviour, IDamageable {
 
     }
     public void TakeDamage(HitData hit) {
-        
-      if(currentHealth >0)
+        gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        damaged = true;
+        GetComponent<Rigidbody>().isKinematic = false;
+        GetComponent<Rigidbody>().AddForce(hit.push * 3, ForceMode.Impulse);
+        if (currentHealth >0)
         anim.SetTrigger("RoboDamage");
 
         blinkTimer = blinkDuration; //reset timer
