@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Beatemup/Assets/Scenes/Sarita/SaritaSFX/Music/BeatemuptuubiMm152.mp3.meta
+guid: 7bf33adafc06b6649a0b1cff50287652
+========
 guid: 3f7d206e4360a7248bea68d71f964020
+>>>>>>>> origin/main:Beatemup/Assets/Scenes/Sarita/SaritaSFX/EditedFS/Footsteps/PlayerSteps/FS Metal 1.wav.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 7

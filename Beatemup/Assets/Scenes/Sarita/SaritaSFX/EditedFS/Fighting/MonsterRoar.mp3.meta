@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Beatemup/Assets/Scenes/Sarita/SaritaSFX/Music/BeatemupTheEndHeavvyFast190mp3.mp3.meta
+guid: 4f69749b0084e15449ed61af2244a9da
+========
 guid: e9a2940ce774bcf49b93f112e6c45eb8
+>>>>>>>> origin/main:Beatemup/Assets/Scenes/Sarita/SaritaSFX/EditedFS/Fighting/MonsterRoar.mp3.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 7

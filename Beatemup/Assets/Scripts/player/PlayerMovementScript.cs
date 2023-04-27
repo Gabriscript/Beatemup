@@ -53,7 +53,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         playState = FindObjectOfType<PlayStateController>();
     }
     void Update() {
-        grounded = Physics.Raycast(transform.position, Vector3.down, 0.05f, whatisGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down,playerHeight*0.2f+0.2f, whatisGround);
         Debug.DrawRay(transform.position,Vector3.down,Color.red,1f);
         MyInput();
         
@@ -112,6 +112,13 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
 
 
 
+
+    }
+
+    public void dash(float multiplier)
+    {
+        Vector3 dashdistance= playerObj.forward*multiplier;
+        rb.AddForce(dashdistance, ForceMode.Impulse);
 
     }
 
