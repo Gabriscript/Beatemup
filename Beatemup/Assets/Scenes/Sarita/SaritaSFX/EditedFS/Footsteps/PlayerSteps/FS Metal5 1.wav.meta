@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Beatemup/Assets/Scenes/Sarita/SaritaSFX/Music/BeatemupHeavyChurchMm160.mp3.meta
+guid: f33ba2e5c50d1974ea320303051ffb51
+========
 guid: 4dc4bcf8f240a3f4db66266ac113dff7
+>>>>>>>> origin/main:Beatemup/Assets/Scenes/Sarita/SaritaSFX/EditedFS/Footsteps/PlayerSteps/FS Metal5 1.wav.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 7
