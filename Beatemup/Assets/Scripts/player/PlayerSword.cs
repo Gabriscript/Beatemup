@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSword : MonoBehaviour {
-   
-
-    // Start is called before the first frame update
+     List<IDamageable> damagedoncurrentattack = new List<IDamageable>();  
+    Transform player;
+  
     void Start()
     {
-      
+        player = GetComponentInParent<PlayerMovementScript>().transform;
     }
 
     // Update is called once per frame
@@ -16,18 +16,39 @@ public class PlayerSword : MonoBehaviour {
     {
         
     }
-    private void OnCollisionEnter(Collision collision) {
-        var c = collision.collider.GetComponent<IDamageable>();
-        
-       
-            if (c != null ) {
 
+  
+    public void StartingNewAttack() {
 
-                c.TakeDamage(new HitData(1, Vector3.back));
-                   
+        damagedoncurrentattack.Clear();
 
-                       
-
-            }
     }
+
+   private void OnTriggerEnter(Collider collision) {
+         var c = collision.GetComponentInParent<IDamageable>();
+        if (damagedoncurrentattack.Contains(c))
+            return;
+        
+         var origin = player.position + 0.5f * Vector3.up;
+         var targetPos = collision.transform.position + 0.5f * Vector3.up;
+         var dir = targetPos - origin;
+       dir.y = 0;
+        dir = dir.normalized;
+
+
+        
+
+             if (c != null ) {
+
+
+                 c.TakeDamage(new HitData(1, dir));
+
+     collision.GetComponentInParent<Rigidbody>().AddForce(dir *5,ForceMode.Impulse);
+
+
+
+
+
+         }
+     }
 }

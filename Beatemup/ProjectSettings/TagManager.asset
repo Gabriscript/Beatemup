@@ -22,7 +22,7 @@ TagManager:
   - EnemyProjectile
   - PlayerProjectile
   - WeaponEnemy
-  - 
+  - lockOnCanvas
   - 
   - 
   - 

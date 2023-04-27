@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ParticlesMotor : MonoBehaviour {
 
-  Transform player;
-    
+     Transform player;
+    PlayerMovementScript playerlife;
+
     public float degreesPerSecond = 3f;
     public float amplitude = 0.5f;
     public float frequency = 0.5f;
@@ -24,7 +25,10 @@ public class ParticlesMotor : MonoBehaviour {
         // Store the starting position & rotation of the object
         posOffset = transform.position;
         player = GameObject.FindGameObjectWithTag("Player").transform;
-//FindObjectOfType<EnemyVisibility>().instantieted = true;
+     
+
+        playerlife = FindObjectOfType<PlayerMovementScript>();
+        //FindObjectOfType<EnemyVisibility>().instantieted = true;
     }
 
     // Update is called once per frame
@@ -48,9 +52,12 @@ public class ParticlesMotor : MonoBehaviour {
            
     }
     private void OnTriggerEnter(Collider other) {
-     
-            FindAnyObjectByType<PlayerMovementScript>().health ++;
-            Destroy(gameObject);
+
+        if (playerlife.currentHealth < playerlife.maxHealth) { 
+            playerlife.currentHealth++;
+            playerlife.healthbar.SetHealth(playerlife.currentHealth);
+        }
+    Destroy(gameObject);
 
 
        

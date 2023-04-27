@@ -7,62 +7,107 @@ public class AttacksetScript : MonoBehaviour
 {
     [Header("playerStatecontrollerhere!")]
     public PlayStateController playerStateController;
+    public PlayerMovementScript playerMovementScript;
     [Header("attacks")]
     public Animator animator;
     [Header("attack 1")]
-    public Collider swordbox1;
+    public GameObject sword;
+    public GameObject gun;
     public KeyCode attackButton1 = KeyCode.Mouse1;
     public float timelength;
     public float attackSpeed;
-    public int MaxCombo = 3;
     public int CurrentCombo = 0;
-
-
+    PlayerSword playerSword;
+    public int[] combo;
+    public bool canAttack = true;
+    public int recovertime;
+    
     
    
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0)) 
-        {
-            animator.Play("Attack");
-            swordbox1.enabled = true;
-            playerStateController.attack = true;
-            Invoke("Deactivatecollider",0.5f);
-        }
-        //attackcheck();
-        if (Input.GetKeyDown(KeyCode.R))
-            reflcet.enabled = true;
-        if (Input.GetKeyUp(KeyCode.R))
-            reflcet.enabled = false;
+        
+            
+            attackcheck();
+            
+        
+        
+        
+        
     }
     public void attackcheck()
     {
-        if (Input.GetKey(attackButton1))
+        if (Input.GetKeyDown(attackButton1))
         {
-            animator.SetBool("attack1", true);
-            duration("attack1", timelength);
-            animator.SetFloat("attack1Duration", timelength);
-            animator.SetBool("attack1", false);
-           
+            CurrentCombo += 1;
+            if (CurrentCombo==1 && canAttack == true)
+             {
+            canAttack= false;
+            playerMovementScript.dash(5);
+            sword.SetActive(true);
+            animator.Play("sword1");
+            playerStateController.attack = true;
+            reflcet.enabled = true;
+            }
 
+            if (CurrentCombo == 2 && canAttack == true)
+            {
+            canAttack = false;
+                playerMovementScript.dash(5);
+                sword.SetActive(true);
+            animator.Play("sword2");
+            playerStateController.attack = true;
+            reflcet.enabled = true;
+
+            }
+            if (CurrentCombo == 3 && canAttack == true)
+            {
+            canAttack = false;
+                playerMovementScript.dash(5);
+                sword.SetActive(true);
+            animator.Play("sword3");
+            playerStateController.attack = true;
+            reflcet.enabled = true;
+            }
+
+            if (CurrentCombo >= 3)
+            {
+            CurrentCombo= 0;
+            duration(recovertime);
+            canAttack = true;
+            }
         }
+        
+
+
+        
+        
     }
-    IEnumerator duration(string attackname, float duration)
+    IEnumerator duration(float duration)
     {
 
         
         yield return new WaitForSeconds(duration);
-        
+        canAttack= true;
     }
     public Collider reflcet;
         void Start()
         {
         playerStateController = FindObjectOfType<PlayStateController>();
-        }
-    void Deactivatecollider() {
-        swordbox1.enabled = false;
 
+         playerSword = FindObjectOfType<PlayerSword>();
+        }
+    public void Deactivatecollider() {
+        sword.SetActive(false);
+        gun.SetActive(false);
+        
+        reflcet.enabled = false;
+
+    }
+    public void CanAttack()
+    {
+        canAttack = true;
     }
 }
 

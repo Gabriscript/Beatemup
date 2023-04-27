@@ -20,13 +20,16 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     public bool grounded;
 
     [Header("hits")]
+    public UIhealthbar healthbar;
     public Collider hitbox;
     public float stunduration;
-    public int health = 3;
+   public  int maxHealth = 5;
+    public int currentHealth;
+    [HideInInspector]
     public bool hitted = false;
 
     public Transform orientation;
-    
+    public comboManger Combomanger;
     public Transform ghostCamera;
 
     [Header("GFX")]
@@ -41,6 +44,8 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     Rigidbody rb;
 
     void Start() {
+        currentHealth = maxHealth;
+        healthbar.SetMaxHealth(maxHealth);
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
@@ -48,7 +53,8 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         playState = FindObjectOfType<PlayStateController>();
     }
     void Update() {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatisGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down,playerHeight*0.2f+0.2f, whatisGround);
+        Debug.DrawRay(transform.position,Vector3.down,Color.red,1f);
         MyInput();
         
 
@@ -109,6 +115,13 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
 
     }
 
+    public void dash(float multiplier)
+    {
+        Vector3 dashdistance= playerObj.forward*multiplier;
+        rb.AddForce(dashdistance, ForceMode.Impulse);
+
+    }
+
     public void speedcontrol() {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
@@ -130,12 +143,13 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         var c = col.GetComponent<IDamageable>();
         if (c != null) {
             print("swordcollision");
+            
+            c.TakeDamage(new HitData(1,Vector3.back));
+           
 
-            c.TakeDamage(new HitData(1));
 
 
-        
-        animator.SetBool("hit", true);
+            animator.SetBool("hit", true);
             StartCoroutine(stun());
         }
     }
@@ -145,17 +159,29 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         animator.SetBool("hit", false);
     }
     public void TakeDamage(HitData hit) {
-        Debug.Log("hit");
-        if (playState.attack) hitted = true; else hitted = false;
-            
-          if(hitted)
-        health -=hit.damage;
+       
+        if (playState.attack) hitted = false; else hitted = true;
+
+        if (hitted) 
+        {
+            currentHealth -= hit.damage;
+            healthbar.SetHealth(currentHealth);
+            Debug.Log("-1lifepoint");
+            rb.AddForce(hit.push);
+           
+        }
+        
        
 
 
-        if (health <= 0) {
+        if (currentHealth <= 0) {
             Debug.Log("I´m dead!");
-            //Die();
+          //  Maintheme.Stop();
+          //  die.Play();
+          //  Invoke("CallGameOver", 3);
         }
+    }
+    public void CallGameOver() {
+        FindObjectOfType<GameOver>().GameOverfunction();
     }
 }
