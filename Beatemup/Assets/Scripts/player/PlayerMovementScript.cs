@@ -134,7 +134,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
             readyToJump = false;
 
             Jump();
-
+            animator.Play("jump");
             Invoke(nameof(ResetJump), jumpCooldown);
         }
     }

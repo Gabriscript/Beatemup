@@ -12,13 +12,12 @@ public class AttacksetScript : MonoBehaviour
     public Animator animator;
     [Header("attack 1")]
     public GameObject sword;
-    public GameObject gun;
+    
     public KeyCode attackButton1 = KeyCode.Mouse1;
     public float timelength;
     public float attackSpeed;
     public int CurrentCombo = 0;
     PlayerSword playerSword;
-    public int[] combo;
     public bool canAttack = true;
     public int recovertime;
     
@@ -51,21 +50,21 @@ public class AttacksetScript : MonoBehaviour
             reflcet.enabled = true;
             }
 
-            if (CurrentCombo == 2 && canAttack == true)
+            else if (CurrentCombo == 2 && canAttack == true)
             {
             canAttack = false;
-                playerMovementScript.dash(5);
-                sword.SetActive(true);
+            playerMovementScript.dash(5);
+            sword.SetActive(true);
             animator.Play("sword2");
             playerStateController.attack = true;
             reflcet.enabled = true;
 
             }
-            if (CurrentCombo == 3 && canAttack == true)
+            else if (CurrentCombo == 3 && canAttack == true)
             {
             canAttack = false;
-                playerMovementScript.dash(5);
-                sword.SetActive(true);
+            playerMovementScript.dash(5);
+            sword.SetActive(true);
             animator.Play("sword3");
             playerStateController.attack = true;
             reflcet.enabled = true;
@@ -78,7 +77,7 @@ public class AttacksetScript : MonoBehaviour
             canAttack = true;
             }
         }
-        
+       
 
 
         
@@ -91,6 +90,18 @@ public class AttacksetScript : MonoBehaviour
         yield return new WaitForSeconds(duration);
         canAttack= true;
     }
+    void Deactivatecollider()
+    {
+        sword.SetActive(false);
+
+
+        reflcet.enabled = false;
+
+    }
+    void CanAttack()
+    {
+        canAttack = true;
+    }
     public Collider reflcet;
         void Start()
         {
@@ -98,16 +109,6 @@ public class AttacksetScript : MonoBehaviour
 
          playerSword = FindObjectOfType<PlayerSword>();
         }
-    public void Deactivatecollider() {
-        sword.SetActive(false);
-        gun.SetActive(false);
-        
-        reflcet.enabled = false;
-
-    }
-    public void CanAttack()
-    {
-        canAttack = true;
-    }
+    
 }
 
