@@ -97,7 +97,12 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
 
     }
     void Update() {
+<<<<<<< Updated upstream
 
+=======
+        grounded = Physics.Raycast(transform.position, Vector3.down,playerHeight*0.2f+0.2f, whatisGround);
+        Debug.DrawRay(transform.position,Vector3.down,Color.red,1f);
+>>>>>>> Stashed changes
         MyInput();
        
 
@@ -224,10 +229,13 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
           //  Invoke("CallGameOver", 3);
         }
     }
+<<<<<<< Updated upstream
 
   /* private  bool ClimbStair() {
        return Physics.BoxCast(coll.bounds.center,coll.bounds.size,Vector3.down,Quaternion.identity,1f,whatisGround);
     }*/
+=======
+>>>>>>> Stashed changes
     public void CallGameOver() {
         FindObjectOfType<GameOver>().GameOverfunction();
     }

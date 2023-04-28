@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Beatemup/Assets/Scenes/Sarita/SaritaSFX/EditedFS/GunEnemy/EnemySlam.mp3.meta
 guid: 31bd920461958ef42bab53515b4b1772
+========
+guid: e9a2940ce774bcf49b93f112e6c45eb8
+>>>>>>>> Stashed changes:Beatemup/Assets/Scenes/Sarita/SaritaSFX/EditedFS/Fighting/MonsterRoar.mp3.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 7

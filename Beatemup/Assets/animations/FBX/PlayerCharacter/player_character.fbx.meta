@@ -58,6 +58,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0
+<<<<<<< Updated upstream
         functionName: DeactivatecolliderShoot
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -65,6 +66,8 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0
+=======
+>>>>>>> Stashed changes
         functionName: Deactivatecollider
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -100,6 +103,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+<<<<<<< Updated upstream
       - time: 0.09186352
         functionName: DeactivatecolliderShoot
         data: 
@@ -108,6 +112,9 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.1863517
+=======
+      - time: 0
+>>>>>>> Stashed changes
         functionName: Deactivatecollider
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -237,6 +244,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+<<<<<<< Updated upstream
       - time: 0
         functionName: DeactivatecolliderShoot
         data: 
@@ -244,6 +252,8 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+=======
+>>>>>>> Stashed changes
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -280,6 +290,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+<<<<<<< Updated upstream
       - time: 0
         functionName: DeactivatecolliderShoot
         data: 
@@ -287,6 +298,8 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+=======
+>>>>>>> Stashed changes
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -315,6 +328,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
+<<<<<<< Updated upstream
       events:
       - time: 0
         functionName: DeactivatecolliderShoot
@@ -323,6 +337,9 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+=======
+      events: []
+>>>>>>> Stashed changes
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -351,6 +368,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
+<<<<<<< Updated upstream
       events:
       - time: 0.496063
         functionName: CanShoot
@@ -366,6 +384,9 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+=======
+      events: []
+>>>>>>> Stashed changes
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -394,6 +415,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
+<<<<<<< Updated upstream
       events:
       - time: 0.5695538
         functionName: CanShoot
@@ -409,6 +431,9 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+=======
+      events: []
+>>>>>>> Stashed changes
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -437,6 +462,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
+<<<<<<< Updated upstream
       events:
       - time: 0.60367453
         functionName: CanShoot
@@ -452,6 +478,9 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+=======
+      events: []
+>>>>>>> Stashed changes
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -480,6 +509,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
+<<<<<<< Updated upstream
       events:
       - time: 0.5671387
         functionName: CanShoot
@@ -495,6 +525,9 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+=======
+      events: []
+>>>>>>> Stashed changes
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -523,6 +556,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
+<<<<<<< Updated upstream
       events:
       - time: 0.58148193
         functionName: CanShoot
@@ -538,6 +572,9 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+=======
+      events: []
+>>>>>>> Stashed changes
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -566,6 +603,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
+<<<<<<< Updated upstream
       events:
       - time: 0
         functionName: Deactivatecollider
@@ -574,6 +612,9 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+=======
+      events: []
+>>>>>>> Stashed changes
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Beatemup/Assets/Scenes/Sarita/SaritaSFX/Music/BeatemupHeavyChurchMm160.mp3.meta
 guid: ee696650011edd648a8e407afb053f90
+========
+guid: 31bd920461958ef42bab53515b4b1772
+>>>>>>>> Stashed changes:Beatemup/Assets/Scenes/Sarita/SaritaSFX/EditedFS/GunEnemy/EnemySlam.mp3.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 7

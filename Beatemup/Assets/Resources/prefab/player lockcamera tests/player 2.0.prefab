@@ -266,7 +266,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6567976960448099294}
+<<<<<<< Updated upstream
   player: {fileID: 5836563918492809524}
+=======
+>>>>>>> Stashed changes
   Enmies: []
   aimer: {fileID: 0}
 --- !u!1 &3841592656185546943
@@ -359,8 +362,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4614442327583950529}
+<<<<<<< Updated upstream
   m_LocalRotation: {x: -0.19827911, y: 0.68411624, z: -0.6722791, w: -0.20177029}
   m_LocalPosition: {x: 0, y: 1.1290002, z: 0}
+=======
+  m_LocalRotation: {x: 0.5482937, y: -0.44432035, z: 0.43663236, w: 0.5579478}
+  m_LocalPosition: {x: 0, y: 1.1289997, z: 0}
+>>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -426,7 +434,11 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4614442327583950529}
+<<<<<<< Updated upstream
   m_Enabled: 0
+=======
+  m_Enabled: 1
+>>>>>>> Stashed changes
 --- !u!114 &3342708836823056084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,8 +636,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5039849666965849770}
+<<<<<<< Updated upstream
   m_LocalRotation: {x: 0.03758375, y: -0.63001007, z: 0.69414246, w: -0.3461807}
   m_LocalPosition: {x: 2.185431, y: 7.332819, z: -14.784473}
+=======
+  m_LocalRotation: {x: -0.5841836, y: -0.04004548, z: -0.17304611, w: 0.79194754}
+  m_LocalPosition: {x: 9.57822, y: 4.3190722, z: -12.978843}
+>>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -843,6 +860,10 @@ GameObject:
   - component: {fileID: 7832332362110637304}
   - component: {fileID: 3436186651969723516}
   - component: {fileID: 7904932917596339738}
+<<<<<<< Updated upstream
+=======
+  - component: {fileID: 3918695943514753611}
+>>>>>>> Stashed changes
   - component: {fileID: 1326066219647413629}
   - component: {fileID: 7864840293183234697}
   m_Layer: 6
@@ -869,8 +890,14 @@ Transform:
   - {fileID: 84961553391565193}
   - {fileID: 4667511047497676237}
   - {fileID: 631898417201376495}
+<<<<<<< Updated upstream
   m_Father: {fileID: 0}
   m_RootOrder: 3
+=======
+  - {fileID: 4380256779582750669}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+>>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: -4.339, z: 0}
 --- !u!54 &7832332362110637304
 Rigidbody:
@@ -912,7 +939,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
+<<<<<<< Updated upstream
   groundFriction: 2
+=======
+  groundDrag: 5
+>>>>>>> Stashed changes
   jumpForce: 8
   jumpCooldown: 0.25
   airmultiplier: 0.4
@@ -922,7 +953,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   grounded: 0
+<<<<<<< Updated upstream
   CanClimbStairs: 0
+=======
+>>>>>>> Stashed changes
   healthbar: {fileID: 0}
   hitbox: {fileID: 672201401184397487}
   stunduration: 2
@@ -950,6 +984,23 @@ MonoBehaviour:
   attack: 0
   battleState: 0
   hittablestate: 2
+<<<<<<< Updated upstream
+=======
+--- !u!114 &3918695943514753611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5836563918492809524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06b02c6c6f82d14db16d9497901b077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firestart: {fileID: 0}
+  ShootSound: {fileID: 8300000, guid: d9f6a39e6c7de06438a2dfa130d22db0, type: 3}
+>>>>>>> Stashed changes
 --- !u!82 &1326066219647413629
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1085,7 +1136,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5998835035315976617}
+<<<<<<< Updated upstream
   m_LocalRotation: {x: 0.16245471, y: 0.11760963, z: -0.9794965, w: 0.019058285}
+=======
+  m_LocalRotation: {x: -0.16245997, y: -0.11760123, z: 0.97949564, w: -0.019109225}
+>>>>>>> Stashed changes
   m_LocalPosition: {x: 5.0444403, y: 3.2308598, z: -14.784563}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1163,7 +1218,11 @@ MonoBehaviour:
   m_Damping: 0
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
+<<<<<<< Updated upstream
 --- !u!1 &6869804209201844649
+=======
+--- !u!1 &8468607633607325212
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1171,20 +1230,31 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< Updated upstream
   - component: {fileID: 8240967373780585306}
   m_Layer: 6
   m_Name: shootingpojnt
+=======
+  - component: {fileID: 4380256779582750669}
+  m_Layer: 6
+  m_Name: GameObject
+>>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< Updated upstream
 --- !u!4 &8240967373780585306
+=======
+--- !u!4 &4380256779582750669
+>>>>>>> Stashed changes
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 6869804209201844649}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.032, y: 0.819, z: 0.3}
@@ -1192,6 +1262,15 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7714394136902533377}
+=======
+  m_GameObject: {fileID: 8468607633607325212}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5961069028662662910}
+>>>>>>> Stashed changes
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1412898644650842515
@@ -1425,7 +1504,11 @@ PrefabInstance:
     - target: {fileID: 1634653857559027878, guid: d33a309a03eefa742943cffffd714933,
         type: 3}
       propertyPath: m_LocalPosition.y
+<<<<<<< Updated upstream
       value: 0
+=======
+      value: -0.069
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 1634653857559027878, guid: d33a309a03eefa742943cffffd714933,
         type: 3}
@@ -2184,11 +2267,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
+<<<<<<< Updated upstream
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8688735936217208978, guid: d33a309a03eefa742943cffffd714933,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8240967373780585306}
+=======
+    m_AddedGameObjects: []
+>>>>>>> Stashed changes
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2154028668470917660, guid: d33a309a03eefa742943cffffd714933,
         type: 3}
@@ -2198,10 +2285,13 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8853190800946649694}
+<<<<<<< Updated upstream
     - targetCorrespondingSourceObject: {fileID: 2154028668470917660, guid: d33a309a03eefa742943cffffd714933,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6830900077043986287}
+=======
+>>>>>>> Stashed changes
     - targetCorrespondingSourceObject: {fileID: 1094820543425301847, guid: d33a309a03eefa742943cffffd714933,
         type: 3}
       insertIndex: -1
@@ -2262,10 +2352,15 @@ MonoBehaviour:
   playerMovementScript: {fileID: 3436186651969723516}
   animator: {fileID: 8122410992316915658}
   sword: {fileID: 2138967831601429576}
+<<<<<<< Updated upstream
+=======
+  gun: {fileID: 3337718104170403394}
+>>>>>>> Stashed changes
   attackButton1: 323
   timelength: 1
   attackSpeed: 1
   CurrentCombo: 0
+<<<<<<< Updated upstream
   canAttack: 1
   recovertime: 0
   reflcet: {fileID: 7547400205566551133}
@@ -2289,6 +2384,12 @@ MonoBehaviour:
   gun: {fileID: 3337718104170403394}
   playerStateController: {fileID: 7904932917596339738}
   recovertime: 0
+=======
+  combo: 010000000200000003000000
+  canAttack: 1
+  recovertime: 0
+  reflcet: {fileID: 7547400205566551133}
+>>>>>>> Stashed changes
 --- !u!1 &2065475126201226436 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1094820543425301847, guid: d33a309a03eefa742943cffffd714933,
@@ -2340,12 +2441,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1412898644650842515}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!4 &7714394136902533377 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8688735936217208978, guid: d33a309a03eefa742943cffffd714933,
     type: 3}
   m_PrefabInstance: {fileID: 1412898644650842515}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!95 &8122410992316915658 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7143560132055287385, guid: d33a309a03eefa742943cffffd714933,
