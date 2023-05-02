@@ -20,9 +20,10 @@ public class AttacksetScript : MonoBehaviour
     PlayerSword playerSword;
     public bool canAttack = true;
     public int recovertime;
-    
-    
-   
+    public float dashdistance;
+
+
+
     // Update is called once per frame
     void Update()
     {
@@ -43,7 +44,7 @@ public class AttacksetScript : MonoBehaviour
             if (CurrentCombo==1 && canAttack == true)
              {
             canAttack= false;
-            playerMovementScript.dash(5);
+            playerMovementScript.dash(dashdistance);
             sword.SetActive(true);
             animator.Play("sword1");
             playerStateController.attack = true;
@@ -53,7 +54,7 @@ public class AttacksetScript : MonoBehaviour
             else if (CurrentCombo == 2 && canAttack == true)
             {
             canAttack = false;
-            playerMovementScript.dash(5);
+            playerMovementScript.dash(dashdistance);
             sword.SetActive(true);
             animator.Play("sword2");
             playerStateController.attack = true;
@@ -63,7 +64,7 @@ public class AttacksetScript : MonoBehaviour
             else if (CurrentCombo == 3 && canAttack == true)
             {
             canAttack = false;
-            playerMovementScript.dash(5);
+            playerMovementScript.dash(dashdistance);
             sword.SetActive(true);
             animator.Play("sword3");
             playerStateController.attack = true;

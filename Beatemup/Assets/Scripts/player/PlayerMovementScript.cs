@@ -221,7 +221,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
             Debug.Log("I´m dead!");
           //  Maintheme.Stop();
           //  die.Play();
-          //  Invoke("CallGameOver", 3);
+          Invoke("CallGameOver", 3);
         }
     }
 
