@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using UnityEngine.Rendering;
 
 public class PlayerMovementScript : MonoBehaviour , IDamageable {  
     [Header("movement")]
     public float moveSpeed;
-    public float groundDrag;
+    public float groundFriction;
     public float jumpForce;
     public float jumpCooldown;
     public float airmultiplier;
     bool readyToJump = true;
+    //public  BoxCollider coll;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -18,6 +21,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
     public float playerHeight;
     public LayerMask whatisGround;
     public bool grounded;
+    public bool CanClimbStairs = false;
 
     [Header("hits")]
     public UIhealthbar healthbar;
@@ -51,19 +55,65 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         playState = FindObjectOfType<PlayStateController>();
+        //coll = GetComponent<BoxCollider>();
+    }
+
+    void FixedUpdate() {
+        //  grounded = Physics.Raycast(transform.position, Vector3.down,0.2f, whatisGround);
+        moverPlayer();
+        speedcontrol();
+
+        var startPos = transform.position + Vector3.up;
+        var size = Vector3.one * 0.5f;
+
+
+        if (grounded = Physics.BoxCast(startPos, size, Vector3.down, out RaycastHit hit, Quaternion.identity, 0.5f, whatisGround)) {
+            rb.position += (0.5f - hit.distance) * Vector3.up;
+            var v = rb.velocity;
+            v.y = 0;
+            var frictionDir = -v.normalized;
+            var frictionAmount = Mathf.Clamp(groundFriction * 9.81f * Time.deltaTime, 0, v.magnitude);
+            v += frictionDir * frictionAmount;
+
+            rb.velocity = v;
+
+            // rb.velocity = Vector3.ProjectOnPlane(rb.velocity, Vector3.up);
+
+        }
+        Debug.DrawRay(transform.position, Vector3.down, Color.red, 1f);
+
+
+        //bool chestcheck = Physics.Raycast(transform.localPosition + Vector3.up , rb.velocity, 1f);
+        // bool feetcheck = Physics.Raycast(transform.localPosition + 0.1f * Vector3.up, rb.velocity, 0.5f);
+
+        // if (!chestcheck && feetcheck) {
+
+        //     CanClimbStairs = true;
+        // }else {
+        //     CanClimbStairs = false;
+        // }
+
+        // Debug.DrawRay(transform.position, Vector3.forward, Color.red, 1f);
+
     }
     void Update() {
+<<<<<<< Updated upstream
+
+=======
         grounded = Physics.Raycast(transform.position, Vector3.down,playerHeight*0.2f+0.2f, whatisGround);
         Debug.DrawRay(transform.position,Vector3.down,Color.red,1f);
+>>>>>>> Stashed changes
         MyInput();
-        
+       
 
-        if (grounded) {
-            rb.drag = groundDrag;
 
-        } else {
-            rb.drag = 0;
-        }
+        //if (grounded) {
+        //    rb.drag = groundDrag;
+         
+
+        //} else {
+        //    rb.drag = 0;
+        //}
 
         Vector3 viewDir = Vector3.ProjectOnPlane(ghostCamera.forward, Vector3.up);
         orientation.forward = viewDir.normalized;
@@ -77,10 +127,8 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         }
     }
 
-    void FixedUpdate() {
-        moverPlayer();
-        speedcontrol();
-    }
+
+    
     public void MyInput() {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
@@ -91,7 +139,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
             readyToJump = false;
 
             Jump();
-
+            animator.Play("jump");
             Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
@@ -181,6 +229,13 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
           //  Invoke("CallGameOver", 3);
         }
     }
+<<<<<<< Updated upstream
+
+  /* private  bool ClimbStair() {
+       return Physics.BoxCast(coll.bounds.center,coll.bounds.size,Vector3.down,Quaternion.identity,1f,whatisGround);
+    }*/
+=======
+>>>>>>> Stashed changes
     public void CallGameOver() {
         FindObjectOfType<GameOver>().GameOverfunction();
     }

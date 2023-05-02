@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+<<<<<<<< Updated upstream:Beatemup/Assets/Scenes/Sarita/SaritaSFX/Music/BeatemupHeavyChurchMm160.mp3.meta
+guid: ee696650011edd648a8e407afb053f90
+========
+guid: 31bd920461958ef42bab53515b4b1772
+>>>>>>>> Stashed changes:Beatemup/Assets/Scenes/Sarita/SaritaSFX/EditedFS/GunEnemy/EnemySlam.mp3.meta
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 7
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+    preloadAudioData: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

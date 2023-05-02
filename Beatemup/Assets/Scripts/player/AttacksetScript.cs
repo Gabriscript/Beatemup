@@ -12,13 +12,20 @@ public class AttacksetScript : MonoBehaviour
     public Animator animator;
     [Header("attack 1")]
     public GameObject sword;
+<<<<<<< Updated upstream
+    
+=======
     public GameObject gun;
+>>>>>>> Stashed changes
     public KeyCode attackButton1 = KeyCode.Mouse1;
     public float timelength;
     public float attackSpeed;
     public int CurrentCombo = 0;
     PlayerSword playerSword;
+<<<<<<< Updated upstream
+=======
     public int[] combo;
+>>>>>>> Stashed changes
     public bool canAttack = true;
     public int recovertime;
     
@@ -51,21 +58,37 @@ public class AttacksetScript : MonoBehaviour
             reflcet.enabled = true;
             }
 
+<<<<<<< Updated upstream
+            else if (CurrentCombo == 2 && canAttack == true)
+            {
+            canAttack = false;
+            playerMovementScript.dash(5);
+            sword.SetActive(true);
+=======
             if (CurrentCombo == 2 && canAttack == true)
             {
             canAttack = false;
                 playerMovementScript.dash(5);
                 sword.SetActive(true);
+>>>>>>> Stashed changes
             animator.Play("sword2");
             playerStateController.attack = true;
             reflcet.enabled = true;
 
             }
+<<<<<<< Updated upstream
+            else if (CurrentCombo == 3 && canAttack == true)
+            {
+            canAttack = false;
+            playerMovementScript.dash(5);
+            sword.SetActive(true);
+=======
             if (CurrentCombo == 3 && canAttack == true)
             {
             canAttack = false;
                 playerMovementScript.dash(5);
                 sword.SetActive(true);
+>>>>>>> Stashed changes
             animator.Play("sword3");
             playerStateController.attack = true;
             reflcet.enabled = true;
@@ -78,7 +101,11 @@ public class AttacksetScript : MonoBehaviour
             canAttack = true;
             }
         }
+<<<<<<< Updated upstream
+       
+=======
         
+>>>>>>> Stashed changes
 
 
         
@@ -90,6 +117,21 @@ public class AttacksetScript : MonoBehaviour
         
         yield return new WaitForSeconds(duration);
         canAttack= true;
+<<<<<<< Updated upstream
+    }
+    void Deactivatecollider()
+    {
+        sword.SetActive(false);
+
+
+        reflcet.enabled = false;
+
+    }
+    void CanAttack()
+    {
+        canAttack = true;
+=======
+>>>>>>> Stashed changes
     }
     public Collider reflcet;
         void Start()
@@ -98,6 +140,9 @@ public class AttacksetScript : MonoBehaviour
 
          playerSword = FindObjectOfType<PlayerSword>();
         }
+<<<<<<< Updated upstream
+    
+=======
     public void Deactivatecollider() {
         sword.SetActive(false);
         gun.SetActive(false);
@@ -109,5 +154,6 @@ public class AttacksetScript : MonoBehaviour
     {
         canAttack = true;
     }
+>>>>>>> Stashed changes
 }
 
