@@ -13,10 +13,12 @@ public class comboManger : MonoBehaviour
     public int currenthits=0;
     
     
-    public Image bar;
-    public Text combo;
+  
     public float timepassed = 0;
     public bool comboInitiate = false;
+    public GameObject[] comboImages;
+    public Image[] fill;
+    
 
     public void Start()
     {
@@ -36,14 +38,15 @@ public class comboManger : MonoBehaviour
     public void ComboSystem()
     {
         timepassed += Time.deltaTime;
-        bar.fillAmount = (ComboCoolOff - timepassed) / ComboCoolOff;
-        combo.text = (comboranks[Combo]);
+        fill[Combo].fillAmount = (ComboCoolOff - timepassed) / ComboCoolOff;
+        comboImages[Combo].SetActive(true);
         if (comboInitiate)
         {
 
             timepassed = 0;
             if (Combo<comboranks.Length-1) 
             {
+                comboImages[Combo].SetActive(false);
                 Combo += 1;
             }
             comboInitiate= false;
@@ -53,6 +56,7 @@ public class comboManger : MonoBehaviour
         {
             if (Combo>0)
             {
+                comboImages[Combo].SetActive(false);
                 Combo -= 1;
             }
             timepassed = 0;
