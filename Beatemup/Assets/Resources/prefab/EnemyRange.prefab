@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 65723023678486670}
   m_Layer: 7
   m_Name: EnemyRange
-  m_TagString: Untagged
+  m_TagString: enemie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 2537838912009313669}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3192459010062457446
 GameObject:

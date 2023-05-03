@@ -37,7 +37,7 @@ public class Interactable : MonoBehaviour
         {
             if(Input.GetKeyUp(KeyCode.F)) 
             {
-                SceneManager.LoadScene("doorenteringscene");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
             }
         }
         

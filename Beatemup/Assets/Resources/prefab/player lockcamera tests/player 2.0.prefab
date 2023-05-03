@@ -51,6 +51,8 @@ MonoBehaviour:
   distance: 5
   degreeOfChild: 60
   sensitivity: 5
+  limitDwon: -10
+  limitUp: 75
 --- !u!1 &3346819262871605597
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 0, z: 0}
+  m_FollowOffset: {x: 0, y: 2, z: 0}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -359,8 +361,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4614442327583950529}
-  m_LocalRotation: {x: -0.19827911, y: 0.68411624, z: -0.6722791, w: -0.20177029}
-  m_LocalPosition: {x: 0, y: 1.1290002, z: 0}
+  m_LocalRotation: {x: 0.66749674, y: 0.2175919, z: -0.21382698, w: 0.6792496}
+  m_LocalPosition: {x: 0, y: 3.129, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -624,8 +626,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5039849666965849770}
-  m_LocalRotation: {x: 0.03758375, y: -0.63001007, z: 0.69414246, w: -0.3461807}
-  m_LocalPosition: {x: 2.185431, y: 7.332819, z: -14.784473}
+  m_LocalRotation: {x: 0.4770285, y: 0.15607105, z: 0.064446814, w: -0.8625151}
+  m_LocalPosition: {x: 8.036554, y: -0.62906575, z: -12.515591}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -870,7 +872,7 @@ Transform:
   - {fileID: 4667511047497676237}
   - {fileID: 631898417201376495}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -4.339, z: 0}
 --- !u!54 &7832332362110637304
 Rigidbody:
@@ -1085,7 +1087,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5998835035315976617}
-  m_LocalRotation: {x: 0.16245471, y: 0.11760963, z: -0.9794965, w: 0.019058285}
+  m_LocalRotation: {x: 0.16246153, y: 0.11759838, z: -0.9794953, w: 0.019125046}
   m_LocalPosition: {x: 5.0444403, y: 3.2308598, z: -14.784563}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2268,6 +2270,7 @@ MonoBehaviour:
   CurrentCombo: 0
   canAttack: 1
   recovertime: 0
+  dashdistance: 15
   reflcet: {fileID: 7547400205566551133}
 --- !u!114 &6830900077043986287
 MonoBehaviour:
@@ -2369,6 +2372,16 @@ PrefabInstance:
         type: 3}
       propertyPath: hitsNeeded
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672795423207919630, guid: eeaa83024ec9b2c4fbab0df0e01757e5,
+        type: 3}
+      propertyPath: fill.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672795423207919630, guid: eeaa83024ec9b2c4fbab0df0e01757e5,
+        type: 3}
+      propertyPath: comboImages.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3035716960950290807, guid: eeaa83024ec9b2c4fbab0df0e01757e5,
         type: 3}
