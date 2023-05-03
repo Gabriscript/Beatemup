@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 2537838912009313669}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3192459010062457446
 GameObject:
@@ -844,8 +844,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firestart: {fileID: 3192459010062457446}
   healthbar: {fileID: 3881123379778076629}
-  ShootSound: {fileID: 8300000, guid: 39fb2759c75ea9d499eac4e0c25a3d85, type: 3}
-  MeleeSound: {fileID: 8300000, guid: 9297164148ea1fc42b79d1355a0ec6ba, type: 3}
+  ShootSound: {fileID: 8300000, guid: 36f51eaa2872d074093fb44f6a09e79e, type: 3}
+  MeleeSound: {fileID: 8300000, guid: 537f1832ff5e4b04cb9ef0a144106636, type: 3}
   enemymelee: {fileID: 5560453357225263968}
   ComboManger: {fileID: 0}
 --- !u!136 &7956933196366486619
@@ -985,7 +985,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -29,6 +29,8 @@ public class PlayerShooting : MonoBehaviour
     }
     void Shoot() {
         if (Input.GetKeyDown(KeyCode.F)) {
+            audioSource.PlayOneShot(ShootSound, 0.2f);
+
             CurrentCombo += 1;
         if (CurrentCombo == 1 && canShoot == true)
         {

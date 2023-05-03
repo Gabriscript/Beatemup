@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &367288661743189039
 Transform:
   m_ObjectHideFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 6697047725766796569}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1309557351446572596
 PrefabInstance:
@@ -229,12 +229,12 @@ PrefabInstance:
     - target: {fileID: 1918165178286036348, guid: 0aba09069976eac43937957a2814ae07,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1918165178286036348, guid: 0aba09069976eac43937957a2814ae07,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2341828070649423605, guid: 0aba09069976eac43937957a2814ae07,
         type: 3}
@@ -1494,9 +1494,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!82 &6810916321280678784
 AudioSource:
@@ -1509,8 +1509,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1609,8 +1609,8 @@ MonoBehaviour:
   healthbar: {fileID: 0}
   crack: {fileID: 4964029409053803312}
   cracktwo: {fileID: 3926900232823642896}
-  MeleeSound: {fileID: 8300000, guid: 31bd920461958ef42bab53515b4b1772, type: 3}
-  GruntSound: {fileID: 8300000, guid: e9a2940ce774bcf49b93f112e6c45eb8, type: 3}
+  MeleeSound: {fileID: 8300000, guid: 6a97d8c8703ebcf4ab19fb061f3de10d, type: 3}
+  GruntSound: {fileID: 8300000, guid: 547a25502c0312d41a6ce0c71d9c4260, type: 3}
   enemymeleeLeft: {fileID: 4956485311979499107}
   enemymeleeRight: {fileID: 4027730186381965299}
   ComboManger: {fileID: 0}
