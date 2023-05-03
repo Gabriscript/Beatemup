@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 06d75ac3f2a6de745838122dfcb276cb
   - enabled: 1
-    path: Assets/Scenes/GabriScene.unity
-    guid: d2ac29a1b8c36664caec1644ba550425
+    path: Assets/Scenes/thomas'sSpookyFolders/levelTestThomas.unity
+    guid: 5d31d1ce4ac8d3442a5d02ab9c089db0
+  - enabled: 1
+    path: Assets/Scenes/thomas'sSpookyFolders/temple level.unity
+    guid: 7e2cddd6e1fafc045a63fc54b6645247
+  - enabled: 1
+    path: Assets/Scenes/thomas'sSpookyFolders/temple inside.unity
+    guid: cc990a91c7a118d4ebf0136e05daa1ba
   m_configObjects: {}
