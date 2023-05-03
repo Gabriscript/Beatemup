@@ -17,7 +17,7 @@ public class GameOver : MonoBehaviour
     }
 
     public void NewGame() {
-        SceneManager.LoadScene("1-1");
+        SceneManager.LoadScene("levelTestThomas");
         gameOverMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsOver = false;
