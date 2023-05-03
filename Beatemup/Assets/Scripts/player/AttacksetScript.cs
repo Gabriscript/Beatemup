@@ -30,11 +30,16 @@ public class AttacksetScript : MonoBehaviour
         
             
             attackcheck();
-            
-        
-        
-        
-        
+
+
+        if (Input.GetKeyDown(KeyCode.R)) {
+
+            reflcet.enabled = true;
+        } else if (Input.GetKeyUp(KeyCode.R)) {
+            reflcet.enabled = false;
+        }
+
+
     }
     public void attackcheck()
     {

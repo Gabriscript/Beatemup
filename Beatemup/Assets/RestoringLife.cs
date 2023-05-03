@@ -11,7 +11,7 @@ public class RestoringLife : MonoBehaviour {
         player = FindObjectOfType<PlayerMovementScript>();
         Healingsymbol.SetActive(false);
     }
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerStay(Collider other) {
         if (player.currentHealth < player.maxHealth)
             player.currentHealth++;
         player.healthbar.SetHealth(player.currentHealth);

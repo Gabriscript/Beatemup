@@ -53,7 +53,7 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
-        Cursor.lockState = CursorLockMode.Locked;
+       Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         playState = FindObjectOfType<PlayStateController>();

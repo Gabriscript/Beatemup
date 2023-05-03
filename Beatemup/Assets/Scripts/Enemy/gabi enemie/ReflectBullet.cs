@@ -18,6 +18,7 @@ public class ReflectBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
         
     }
     private void OnTriggerStay(Collider other) {

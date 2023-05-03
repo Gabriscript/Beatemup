@@ -4896,8 +4896,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8161797889146590073}
   - component: {fileID: 2659107897588828305}
-  - component: {fileID: 7258616250580216967}
   - component: {fileID: 1564307256727699041}
+  - component: {fileID: 8885950259804194300}
   m_Layer: 13
   m_Name: Playerbullet
   m_TagString: Untagged
@@ -4920,7 +4920,7 @@ Transform:
   - {fileID: 5029502272246232112}
   - {fileID: 4904457044933224731}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2659107897588828305
 Rigidbody:
@@ -4948,9 +4948,24 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!135 &7258616250580216967
-SphereCollider:
+  m_CollisionDetection: 1
+--- !u!114 &1564307256727699041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535270442166999102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db8d3051789b324fb2a61c39a410dea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 250
+  muzzle: {fileID: 2320209936538824267, guid: 9ec5ffc7dd879074c8f08794e722d62b, type: 3}
+  hit: {fileID: 6889908374099315969, guid: 9a7dfa9daa502bc41b7813ff8e15c6b2, type: 3}
+--- !u!136 &8885950259804194300
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4967,24 +4982,11 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.18068314
-  m_Center: {x: 0, y: 0, z: 0.11}
---- !u!114 &1564307256727699041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1535270442166999102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4db8d3051789b324fb2a61c39a410dea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 500
-  muzzle: {fileID: 2320209936538824267, guid: 9ec5ffc7dd879074c8f08794e722d62b, type: 3}
-  hit: {fileID: 6889908374099315969, guid: 9a7dfa9daa502bc41b7813ff8e15c6b2, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.14
+  m_Height: 4.23
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6762961267161344210
 GameObject:
   m_ObjectHideFlags: 0

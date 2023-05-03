@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -25,12 +26,17 @@ public class PauseMenu : MonoBehaviour
         PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gameIspause = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
     }
 
     void Pause() {
         PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gameIspause = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
     }
     public void QuitGame() {
