@@ -52,8 +52,8 @@ public class PlayerMovementScript : MonoBehaviour , IDamageable {
         healthbar.SetMaxHealth(maxHealth);
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
         playState = FindObjectOfType<PlayStateController>();
         //coll = GetComponent<BoxCollider>();
     }
