@@ -21,11 +21,15 @@ public class GameOver : MonoBehaviour
         gameOverMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsOver = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     public void GameOverfunction() {
         gameOverMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsOver = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     public void QuitGame() {
         Application.Quit();
